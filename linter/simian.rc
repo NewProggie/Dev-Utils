@@ -1,0 +1,3 @@
+-language=cpp 
+-formatter=plain
+-threshold=5

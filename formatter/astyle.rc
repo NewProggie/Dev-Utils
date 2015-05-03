@@ -1,0 +1,23 @@
+# Artistic Style Configuration v2.05
+# Kai Wolf, 2015
+
+--style=google         # google code style guidelines
+--formatted            # display only the formatted files
+--indent=spaces=4      # always indent 4 spaces
+--attach-namespaces    # attach brackets to a namespace statement
+--attach-classes       # attach brackets to a class statement
+--indent-namespaces    # add extra indentation to namespace blocks
+--indent-preproc-block # indent preprocessor blocks
+--indent-col1-comments # indent comments beginning in column one
+--break-blocks=all     # pad empty lines around header blocks
+--pad-oper             # insert space padding around operators
+--pad-header           # insert space padding between a header (e.g. if, for,..)
+--unpad-paren          # remove extra space padding around parenthesis
+--delete-empty-lines   # delete empty lines within a method
+--align-pointer=type   # attach pointer to type
+--align-reference=type # attach reference to type
+--add-brackets         # add brackets to on line statements
+--close-templates      # remove whitespaces in template brackets
+--max-code-length=80   # max number of chars per line
+--break-after-logical  # put conditions on the previous line
+--suffix=none          # no backup files when reformatting

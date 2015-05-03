@@ -1,0 +1,9 @@
+--force              # check all configurations in files
+--quiet              # only print error messages
+--template=gcc       # print messages in gcc style format
+--error-exitcode=1   # return 1 instead of 0 if errors occured
+--std=c++11          # code base is c++11 compatible
+--enable=warning     # enable warning messages
+--enable=style       # enable all coding style checks
+--enable=information # enable information messages
+--platform=unix64    # enable platform specific types and sizes

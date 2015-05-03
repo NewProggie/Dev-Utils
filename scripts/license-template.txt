@@ -1,0 +1,8 @@
+/******************************************************************************
+ * Copyright (C) 2015, Kai Wolf                                               *
+ * All rights reserved.                                                       *
+ *                                                                            *
+ * For the licensing terms see LICENSE file in the root directory.            *
+ * For the list of contribtors see AUTHORS file in the root directory.        *
+ *****************************************************************************/
+
