@@ -1,0 +1,25 @@
+# Clang-Format Style Options for 3.7+
+---
+# We'll use defaults from the Google style, but with 4 columns indentation.
+BasedOnStyle: Google
+IndentWidth: 4
+---
+Language: Cpp
+# Extra indent/outdent of access modifiers, e.g. public:
+AccessModifierOffset: -2
+AlignConsecutiveAssignments: true
+AllowShortBlocksOnASingleLine: true
+AllowShortFunctionsOnASingleLine: Empty
+KeepEmptyLinesAtTheStartOfBlocks: true
+SpacesBeforeTrailingComments: 1
+SpaceAfterCStyleCast: true
+NamespaceIndentation: All
+Standard: Cpp11
+---
+Language: JavaScript
+# Use 100 columns for JS.
+ColumnLimit: 100
+---
+Language: Java
+# Use 90 columns for Java.
+ColumnLimit: 90
