@@ -9,29 +9,32 @@ an appropriate folder or module beneath the source folder. A new folder or
 module might be created if it doesn't fit in any existing one:
 
 * All the file names are written in lower case for better compatibility with
-POSIX based operating systems (e.g. foobar\_factory.cpp)
-* C++ interface haders have `.hpp` extension
+POSIX based operating systems (e.g. `foobar_factory.cpp`)
+* C++ interface headers have `.hpp` extension
 * Implementation files have `.cpp` extension
-* The implementation is put to `src/<module_name>`, interface is added to the
-header files in `include/<project_name>/<modul_name>.hpp`
+* The implementation and header file is put to `src/<module_name>`, a public
+interface is added to the header files in
+`include/<project_name>/<modul_name>.hpp`
 * Tests are put to test/ with the suffix `_test` in the actual filename.
 
-## File Structure
-Every header file, except for the tests, starts with the following template
+## Header files
+* Don't include unneeded headers. If a file isn't using the symbols from some
+header, remove the header
+* Forward declare classes instead of including its headers whenever possible.
+This helps to reduce build times.
 
-    /**************************************************************************
-     * Copyright (C) <year>, <optional author>                                *
-     * All rights reserved.                                                   *
-     *                                                                        *
-     * For the licensing terms see LICENSE file in root directory.            *
-     * For the list of contributors see AUTHORS file in root directory.       *
-     **************************************************************************/
+## File Structure
+Every source and header file, including tests, start with the following template
+
+    // Copyright (c) <year>, <optional author>. All rights reserved.
+    // For the licensing terms see LICENSE file in the root directory. For the
+    // list of contributors see the AUTHORS file in the same directory
 
 Other rules for both header and implementation files include:
 
 * All the functionality must be put into an appropriate namespace, or possibly,
-some nested namespace, e.g. `myproject::mymodule`
-* Code lines should not be very long. Normaly, they should be limited to 80
+some nested namespace, e.g. `myproject::mymodule` or better anonymous namespace.
+* Code lines should not be very long. Normally, they should be limited to 80
 characters
 * No tabulation should be used. Set your editor to use spaces instead
 * Only English text is allowed. Do not put comments or string literals in other
@@ -40,8 +43,8 @@ languages
 * Header files must use guarding macros, protecting the files from repeated
 inclusion
 
-        #ifndef project_your_header_name_HPP
-        #define project_your_header_name_HPP
+        #ifndef PROJECT_YOUR_HEADER_NAME_HPP
+        #define PROJECT_YOUR_HEADER_NAME_HPP
         ...
         #endif
 
@@ -50,6 +53,7 @@ inclusion
 methods
 * Class names start with a capital letter
 * methods' and functions' names start with a small letter
+* member variables are lower case and end with an underline (e.g. `foo_`)
 * Macros and enumeration constants are written with all capital letters. Words
 are separated by underscore
 
@@ -60,6 +64,7 @@ with the rest of the project. The elements of a function interface include:
 * Functionality
 * Name
 * Return value
+* Number of arguments
 * Type of arguments
 * Order of arguments
 * Default values for some arguments
@@ -76,20 +81,25 @@ includes:
 * `<actionName><Object><Modifiers>`, e.g. `getBasename`, `appendWhenWriting`
 
 ### Return value
-It should be chosen to simpliy function usage. Generally, a function that
+It should be chosen to simplify function usage. Generally, a function that
 creates/computes a value should return it. Functions should not use return value
-for signaling a critical error, such as null pointers, division by zero etc.
-Instead, they should throw an exception. On the other hand, it is recommended to
-use a return value for signalizing about quite normal run-time situations that
-can happen in a correctly working system (e.g. a file could not be found etc.)
+for signaling a critical error, such as null pointers, division by zero etc. On
+the other hand, it is recommended to use a return value for signalizing about
+quite normal run-time situations that can happen in a correctly working system
+(e.g. a file could not be found etc.).
 
-### Types of arguents
+### Number of arguments
+The ideal number of function arguments is zero (niladic). The next one is one
+argument (monadic), followed by two arguments (dyadic). There is rarely the case
+for functions which take three arguments (triadic). Functions which take three
+or more arguments should be avoided whenever possible.
+
+### Types of arguments
 Argument types are preferably chosen from the already existing set of types
 defined in your project: For example File for files, Directory for Directories
-etc. It is not recommended to use plain pointers and counters, because it makes
-the interface lower-level, meaning more probable typing errors, memory leaks
-etc. For passing complex objects int functions and methods, please consider
-using C++11 smart pointers.
+etc. Standard smart pointers as well as non-owning raw pointers are ok. For
+passing complex objects int functions and methods, please consider using C++11
+smart pointers.
 
 A consistent argument order is important because it becomes easier to remember
 the order and it helps programmers to avoid errors, connecting with wrong
@@ -129,10 +139,11 @@ This document is not a complete style guide and a living document. Changes might
 happen.
 
 ### The brief list of rules
-* Filenames are written in lower-case letters
+* Filenames are written in lower case letters
+* Member variables are lower case with an underline suffix
 * Headers have `.hpp` extension
 * Implementation files have `.cpp` extension
-* Every header includes the mentioned license in the beginning
+* Every source and header includes the mentioned license in the beginning
 * Do not use tabs. Indentation is 4 spaces. Lines should not be longer than 80
 characters
 * Keep consistent formatting style in each particular source
