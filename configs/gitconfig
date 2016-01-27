@@ -1,0 +1,17 @@
+[user]
+	name = Kai Wolf
+	email = kai.wolf@gmail.com
+[push]
+	default = simple
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ll = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	co = checkout
+	ci = commit
+	sb = status -sb
+	br = branch
+	cm = !git add -A && git commit -m
+	new = !sh -c 'git log --oneline $1@{1}..$1@{0} "$@"'
+[core]
+	editor = vim
