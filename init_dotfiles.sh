@@ -9,7 +9,8 @@ for file in "${DOT_FILES[@]}"; do
     repo_dot_file="${DOT_REPO}/${file}"
     if [ -e "${home_dot_file}" ]; then
         echo "====> Backup ${home_dot_file} to ${home_dot_file}.old"
-        wget "${repo_dot_file}" -O "${home_dot_file}"
+        mv "${home_dot_file}" "${home_dot_file}.old"
+        wget --quiet "${repo_dot_file}" -O "${home_dot_file}"
     fi
 done
 unset file;
