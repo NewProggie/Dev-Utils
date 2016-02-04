@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
 DOT_REPO=https://raw.githubusercontent.com/NewProggie/Dev-Utils/master/dotfiles
-declare -a DOT_FILES=(".alias" ".bash_profile" ".bashrc" ".exports" \
-                      ".functions" ".gdbinit" ".gitconfig" ".inputrc" \
-                      ".prompt" ".tmux.conf" ".vimrc")
+declare -a DOT_FILES=(".alias" ".bash_profile" ".bashrc" ".exports" ".functions" ".gdbinit" ".gitconfig" ".inputrc" ".prompt" ".tmux.conf" ".vimrc")
 
 echo "==> Installing dotfiles from ${DOT_REPO}"
 for file in "${DOT_FILES[@]}"; do
