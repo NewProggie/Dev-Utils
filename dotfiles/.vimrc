@@ -10,6 +10,7 @@ set autoread                 " watch for file changes
 set nobackup                 " don't use backup files
 
 """ Console / Text display
+syntax on                    " show syntax highlighting
 set showcmd                  " show (partial) command in status line.
 set number                   " line numbers
 set ruler                    " shows line number in status line
