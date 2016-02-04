@@ -13,5 +13,6 @@ for file in "${DOT_FILES[@]}"; do
         mv "${home_dot_file}" "${home_dot_file}.old"
         wget --quiet "${repo_dot_file}" -O "${home_dot_file}"
     fi
+    source "${HOME}/.bash_profile"
 done
 unset file;
