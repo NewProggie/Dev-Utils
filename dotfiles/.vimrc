@@ -7,7 +7,11 @@ set nocompatible             " use vim, not vi
 set fileformats=unix,dos,mac " support all three newline formats
 set viminfo=                 " don't use or save viminfo files
 set autoread                 " watch for file changes
-set nobackup                 " don't use backup files
+set nobackup                 " don't use backup
+set nowb                     " files of
+set noswapfile               " any kind
+let mapleader = ","          " with a map leader it's possible to do extra
+let g:mapleader = ","        " key combinations
 
 """ Console / Text display
 syntax on                    " show syntax highlighting
@@ -18,6 +22,15 @@ set noerrorbells             " disable bells in error case
 set list                     " show invisible characters
 set listchars=tab:>·,trail:· " but only show tabs and trailing whitespace
 set wildmenu                 " command line completion with list of matches
+set so=7                     " set 7 lines to the cursor when moving vertically
+set wildignore=*.o,*~,.git\* " ignore compiled files
+set foldcolumn=1             " add a little margin to the left
+try                          " standard vim theme to use
+    colorscheme desert
+catch
+endtry
+set background=dark          " enable dark background
+set encoding=utf8            " set utf8 as standard encoding
 
 """ Status line
 set laststatus=2             " always show the status line
@@ -43,10 +56,37 @@ set copyindent               " use existing indents for new indents
 set preserveindent           " save as much indent structure as possible
 filetype plugin indent on    " load filetype plugins and indent settings
 
-" Returns true if paste mode is enabled
-function! HasPaste()
+""" Spell checking
+map <leader>ss :setlocal spell!<cr> " toggle spell checking with ,ss
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+""" Custom functions
+function! HasPaste()         " returns true, if paste mode is enabled
     if &paste
         return 'PASTE MODE  '
     endif
     return ''
 endfunction
+
+""" Vim package manager pathogen
+execute pathogen#infect()
+
+""" pathogen::NerdTree
+let g:NERDTreeWinPos = "right"
+let NERDTreeShowHidden=0
+let g:NERDTreeWinSize=35
+map <leader>nn :NERDTreeToggle<cr>
+map <leader>nb :NERDTreeFromBookmark 
+map <leader>nf :NERDTreeFind<cr>
+
+""" pathogen::ctrlP
+let g:ctrlp_working_path_mode = 0
+
+let g:ctrlp_map = '<c-f>'
+map <leader>j :CtrlP<cr>
+map <c-b> :CtrlPBuffer<cr>
+let g:ctrlp_max_height = 20
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
