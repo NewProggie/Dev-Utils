@@ -19,6 +19,10 @@ set list                     " show invisible characters
 set listchars=tab:>·,trail:· " but only show tabs and trailing whitespace
 set wildmenu                 " command line completion with list of matches
 
+""" Status line
+set laststatus=2             " always show the status line
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+
 """ Text editing and searching
 set nohlsearch               " turn of highlighting for searched expressions
 set incsearch                " incremental search rules
@@ -33,8 +37,16 @@ set smartindent              " try to be smart about indenting (C-style)
 set expandtab                " expand <Tab>s with spaces
 set shiftwidth=4             " spaces for each step of (auto) indent
 set softtabstop=4            " set virtual tab stop (compat for 8-wide tabs)
-set tabstop=8                " for proper display of files with tabs
+set tabstop=4                " for proper display of files with tabs
 set shiftround               " always round indents to multiple of shiftwidth
 set copyindent               " use existing indents for new indents
 set preserveindent           " save as much indent structure as possible
 filetype plugin indent on    " load filetype plugins and indent settings
+
+" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    endif
+    return ''
+endfunction
