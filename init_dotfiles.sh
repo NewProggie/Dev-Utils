@@ -13,6 +13,7 @@ for file in "${DOT_FILES[@]}"; do
         echo "====> Backup ${home_dot_file} to ${home_dot_file}.old"
         mv "${home_dot_file}" "${home_dot_file}.old"
     fi
+    echo "====> Installing ${home_dot_file}"
     wget --quiet "${repo_dot_file}" -O "${home_dot_file}"
 done
 source "${HOME}/.bash_profile"
