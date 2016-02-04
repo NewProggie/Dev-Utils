@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
 DOT_REPO=https://raw.githubusercontent.com/NewProggie/Dev-Utils/master/dotfiles
 declare -a DOT_FILES=(".alias" ".bash_profile" ".bashrc" ".exports" \
                       ".functions" ".gdbinit" ".gitconfig" ".inputrc" \
