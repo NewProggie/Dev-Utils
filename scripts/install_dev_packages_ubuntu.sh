@@ -14,7 +14,7 @@ sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 
 # install essential software packages
 sudo apt-get update -qq
-sudo apt-get --yes --force-yes --no-install-recommends `echo ${SW_PACKS[@]}`
+sudo apt-get install --yes --force-yes --no-install-recommends `echo ${SW_PACKS[@]}`
 
 # update alternatives to use the latest and greatest
 sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.6 90
