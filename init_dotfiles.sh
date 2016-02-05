@@ -37,5 +37,5 @@ git clone https://github.com/scrooloose/nerdtree.git ${VIM_BUNDLE}/nerdtree
 echo "====> Installing ctrl-P plugin"
 git clone https://github.com/ctrlpvim/ctrlp.vim ${VIM_BUNDLE}/ctrlp.vim
 
-echo "==> Setup gnome-terminal colors using (gconftool-2 needed):"
+echo "==> [optional] Setup gnome-terminal colors using (gconftool-2 needed):"
 echo "curl -s https://raw.githubusercontent.com/NewProggie/Dev-Utils/master/scripts/smyck_gnome.sh | bash"

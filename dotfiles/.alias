@@ -26,3 +26,6 @@ alias ls="command ls ${colorflag}"
 
 # get current public ip address
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+# force tmux to use 256 colors
+alias tmux="tmux -2"
