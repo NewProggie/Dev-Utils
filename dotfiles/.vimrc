@@ -71,6 +71,9 @@ function! HasPaste()         " returns true, if paste mode is enabled
     return ''
 endfunction
 
+" close nerdtree, if it's the last window open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 """ Vim package manager pathogen
 execute pathogen#infect()
 
