@@ -17,7 +17,6 @@ let g:mapleader = ","        " key combinations
 syntax on                    " show syntax highlighting
 set showcmd                  " show (partial) command in status line.
 set number                   " line numbers
-set ruler                    " shows line number in status line
 set noerrorbells             " disable bells in error case
 set list                     " show invisible characters
 set listchars=tab:>·,trail:· " but only show tabs and trailing whitespace
@@ -34,7 +33,10 @@ set encoding=utf8            " set utf8 as standard encoding
 
 """ Status line
 set laststatus=2             " always show the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ " in paste mode?
+set statusline+=CWD:\ %r%{getcwd()}%h\ %=     " current working directory
+set statusline+=Line:\%l,\   " current line
+set statusline+=Column:\%c\  " current column
 
 """ Text editing and searching
 set nohlsearch               " turn of highlighting for searched expressions
@@ -43,6 +45,7 @@ set ignorecase               " case insensitive matching
 set smartcase                " unless there's a capital letter
 set textwidth=80             " we want 80 columns
 set showmatch                " show matching bracket
+nnoremap t <c-]>             " ctags shortcut (t =tag and jumping back with Ctrl-t
 
 """ Indentations and tabs
 set autoindent               " set the cursor at same indent as line above
