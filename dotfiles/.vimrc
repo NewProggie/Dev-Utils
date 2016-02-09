@@ -30,6 +30,10 @@ catch
 endtry
 set background=dark          " enable dark background
 set encoding=utf8            " set utf8 as standard encoding
+augroup project              " enable highlighting for pure c and doxygen
+    autocmd!
+    autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
+augroup END
 
 """ Status line
 set laststatus=2             " always show the status line
