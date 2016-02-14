@@ -13,6 +13,15 @@ set noswapfile               " any kind
 let mapleader = ","          " with a map leader it's possible to do extra
 let g:mapleader = ","        " key combinations
 
+""" Tab/Window navigation
+map <C-J> <C-W>j<C-W>_       " Remap window navigation
+map <C-K> <C-W>k<C-W>_       " using <ctrl> together with
+map <C-L> <C-W>l<C-W>_       " <jklh>, which directly
+map <C-H> <C-W>h<C-W>_       " mirrors cursor navigation
+
+map <S-H> gT                 " Remap tab navigation
+map <S-L> gt                 " to H and L
+
 """ Console / Text display
 syntax on                    " show syntax highlighting
 set showcmd                  " show (partial) command in status line.
@@ -37,10 +46,11 @@ augroup END
 
 """ Status line
 set laststatus=2             " always show the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ " in paste mode?
-set statusline+=CWD:\ %r%{getcwd()}%h\ %=     " current working directory
-set statusline+=Line:\%l,\   " current line
-set statusline+=Column:\%c\  " current column
+set statusline=%<%f\         " Filename
+set statusline+=%w%h%m%r     " Options
+set statusline+=\ \|%{&ff}\|%Y\| " Filetype
+set statusline+=\ %{getcwd()} " Current dir
+set statusline+=%=%-14.(%l,%c%V%)\ %p%%\  " Right aligned file nav info
 
 """ Text editing and searching
 set nohlsearch               " turn of highlighting for searched expressions
