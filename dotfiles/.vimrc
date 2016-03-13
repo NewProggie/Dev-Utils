@@ -110,3 +110,17 @@ map <leader>j :CtrlP<cr>
 map <c-b> :CtrlPBuffer<cr>
 let g:ctrlp_max_height = 20
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+""" pathogen::syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 2
+
+let g:airline_powerline_fonts = 1
+let g:airline_theme='luna'
+let g:airline#extensions#branch#displayed_head_limit = 10
+
+""" pathogen::tagbar
+nmap <S-t> :TagbarToggle<CR>
