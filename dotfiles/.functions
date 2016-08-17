@@ -23,3 +23,10 @@ function man() {
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
             man "$@"
 }
+
+# plot stuff directly from the command line.
+# Example: seq 100 | sed 's/.*/s(&)/' | bc -l | plot linecolor 2
+function plot() {
+    { echo 'plot "-"' "$@"; cat; } | gnuplot -persist;
+}
+
