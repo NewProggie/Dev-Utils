@@ -37,3 +37,8 @@ if which brew > /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_c
 elif [ -f /etc/bash_completion ]; then
     source /etc/bash_completion;
 fi;
+
+# Add auto completion for git branches
+if [ -f "${HOME}/.git-completion.bash" ]; then
+  source "${HOME}/.git-completion.bash"
+fi
