@@ -15,3 +15,8 @@
 	new = !sh -c 'git log --oneline $1@{1}..$1@{0} "$@"'
 [core]
 	editor = vim
+	fileMode = true
+	autocrlf = input
+	pager = less -+F
+[color]
+    ui = true

@@ -1,6 +1,7 @@
 " Bootstrap VIM config
-" Maintainer: Kai Wolf <http://kai-wolf.me/>
-" Version:    1.0
+" Maintainer:   Kai Wolf <http://kai-wolf.me/>
+" Last changed: 08.2016
+" Version:      1.1
 
 """ Meta
 set nocompatible             " use vim, not vi
@@ -18,11 +19,17 @@ map <C-J> <C-W>j<C-W>_       " Remap window navigation
 map <C-K> <C-W>k<C-W>_       " using <ctrl> together with
 map <C-L> <C-W>l<C-W>_       " <jklh>, which directly
 map <C-H> <C-W>h<C-W>_       " mirrors cursor navigation
+map <left> :bprevious<CR>    " left arrow, cycling through buffers
+map <right> :bnext<CR>       " right arrow, cycling through buffers
 
 map <S-H> gT                 " Remap tab navigation
 map <S-L> gt                 " to H and L
 
 """ Console / Text display
+try                          " standard vim theme to use
+    colorscheme newproggie
+catch
+endtry
 syntax on                    " show syntax highlighting
 set showcmd                  " show (partial) command in status line.
 set number                   " line numbers
@@ -33,11 +40,8 @@ set wildmenu                 " command line completion with list of matches
 set so=7                     " set 7 lines to the cursor when moving vertically
 set wildignore=*.o,*~,.git\* " ignore compiled files
 set foldcolumn=1             " add a little margin to the left
-try                          " standard vim theme to use
-    colorscheme desert
-catch
-endtry
-set background=dark          " enable dark background
+match OverLength /\%80v.\+/  " highlight text longer than 80 columns
+set hidden                   " allow buffers to be hidden
 set encoding=utf8            " set utf8 as standard encoding
 augroup project              " enable highlighting for pure c and doxygen
     autocmd!
@@ -87,32 +91,27 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 execute pathogen#infect()
 
 """ pathogen::NerdTree
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
 let NERDTreeShowHidden=0
-let g:NERDTreeWinSize=35
+let g:NERDTreeWinSize=30
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark 
 map <leader>nf :NERDTreeFind<cr>
 
 """ pathogen::ctrlP
 let g:ctrlp_working_path_mode = 0
-
 let g:ctrlp_map = '<c-f>'
 map <leader>j :CtrlP<cr>
 map <c-b> :CtrlPBuffer<cr>
 let g:ctrlp_max_height = 20
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
-""" pathogen::syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height = 2
-
+""" pathogen::airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme='luna'
 let g:airline#extensions#branch#displayed_head_limit = 16
+let g:airline_theme='newproggie'
+let g:airline#extensions#tabine#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++14'
