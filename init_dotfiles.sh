@@ -12,7 +12,7 @@ declare -a DOT_FILES=(".alias" ".bash_profile" ".bashrc" ".exports" \
 
 echo "==> Installing dotfiles from ${DOT_REPO}"
 for file in "${DOT_FILES[@]}"; do
-    home_dot_file="${HOME}/${file}" 
+    home_dot_file="${HOME}/${file}"
     repo_dot_file="${DOT_REPO}/${file}"
     if [ -e "${home_dot_file}" ]; then
         echo "====> Backup ${home_dot_file} to ${home_dot_file}.old"
@@ -55,7 +55,7 @@ git clone git://github.com/tpope/vim-fugitive.git ${VIM_BUNDLE}/vim-fugitive
 echo "====> Installing vim-gitgutter plugin"
 git clone git://github.com/airblade/vim-gitgutter.git ${VIM_BUNDLE}/vim-gitgutter
 echo "====> Installing YouCompleteMe plugin"
-git clone https://github.com/Valloric/YouCompleteMe.git ${VIM_BUNDLE}/YouCompleteMe
+git clone --recursive https://github.com/Valloric/YouCompleteMe.git ${VIM_BUNDLE}/YouCompleteMe
 pushd ${VIM_BUNDLE}/YouCompleteMe && ./install.py --clang-completer && popd
 
 echo "==> Installing VIM color themes from ${DOT_REPO}"

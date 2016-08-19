@@ -84,7 +84,7 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
-" close nerdtree, if it's the last window open
+""" Close NERDTree, if it's the last open window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """ Vim package manager pathogen
@@ -108,10 +108,18 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 """ pathogen::airline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#displayed_head_limit = 16
 let g:airline_theme='newproggie'
-let g:airline#extensions#branch#displayed_head_limit = 28
 let g:airline#extensions#tabine#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++14'
+
 """ pathogen::tagbar
 nmap <S-t> :TagbarToggle<CR>
+
+""" pathogen::YouCompleteMe
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
