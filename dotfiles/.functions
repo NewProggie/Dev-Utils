@@ -57,3 +57,12 @@ function extract () {
       echo "'$1' is not a valid file!"
   fi
 }
+
+# get number of logical cpu cores
+function cores() {
+    case "${OSTYPE}" in
+      darwin*) sysctl -n hw.ncpu ;;
+      linux*)  grep ^processor /proc/cpuinfo | wc -l ;;
+      *)       echo "unknwon ${OSTYPE}" ;;
+    esac
+}
