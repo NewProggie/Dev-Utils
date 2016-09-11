@@ -1,28 +1,22 @@
 #!/usr/bin/env bash
 
-# some custom functions
-command_exists () {
-    type "$1" &> /dev/null ;
-}
-
 DOT_REPO=https://raw.githubusercontent.com/NewProggie/Dev-Utils/master/dotfiles
 declare -a DOT_FILES=(".alias" ".bash_profile" ".bashrc" ".exports" \
                       ".functions" ".gdbinit" ".gitconfig" ".inputrc" \
                       ".prompt" ".tmux.conf" ".vimrc")
 
-echo "==> Installing dotfiles from ${DOT_REPO}"
-for file in "${DOT_FILES[@]}"; do
-    home_dot_file="${HOME}/${file}"
-    repo_dot_file="${DOT_REPO}/${file}"
-    if [ -e "${home_dot_file}" ]; then
-        echo "====> Backup ${home_dot_file} to ${home_dot_file}.old"
-        mv "${home_dot_file}" "${home_dot_file}.old"
+echo "==> Symlinking dotfiles from ${DOT_REPO}"
+for file in $(find dotfiles/ -type f -maxdepth 1); do
+    home_dotfile="${HOME}/$(basename ${file})"
+    if [ -e "${home_dotfile}" ]; then
+        echo "====> Backup ${home_dotfile} to ${home_dotfile}.old"
+        mv "${home_dotfile}" "${home_dotfile}.old"
     fi
-    echo "====> Installing ${home_dot_file}"
-    wget --quiet "${repo_dot_file}" -O "${home_dot_file}"
+    echo "====> Symlinking ${home_dotfile}"
+    ln -s $(pwd)/${file} ${home_dotfile}
 done
 source "${HOME}/.bash_profile"
-unset file;
+unset file
 
 echo "==> Installing git bash completion"
 curl -LSso "${HOME}/.git-completion.bash" \
@@ -54,8 +48,8 @@ echo "====> Installing vim-fugitive plugin"
 git clone git://github.com/tpope/vim-fugitive.git ${VIM_BUNDLE}/vim-fugitive
 echo "====> Installing vim-gitgutter plugin"
 git clone git://github.com/airblade/vim-gitgutter.git ${VIM_BUNDLE}/vim-gitgutter
-echo "====> Installing YouCompleteMe plugin"
-git clone --recursive https://github.com/Valloric/YouCompleteMe.git ${VIM_BUNDLE}/YouCompleteMe
+echo "====> Installing YouCompleteMe plugin (fork featuring C/C++ hints)"
+git clone --recursive https://github.com/oblitum/YouCompleteMe.git ${VIM_BUNDLE}/YouCompleteMe
 pushd ${VIM_BUNDLE}/YouCompleteMe && ./install.py --clang-completer && popd
 
 echo "==> Installing VIM color themes from ${DOT_REPO}"

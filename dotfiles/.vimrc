@@ -120,6 +120,5 @@ let g:syntastic_cpp_compiler_options = ' -std=c++14'
 nmap <S-t> :TagbarToggle<CR>
 
 """ pathogen::YouCompleteMe
-set completeopt-=preview
-let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
