@@ -87,6 +87,12 @@ map <leader>s? z=
 """ Close NERDTree, if it's the last open window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+""" Clang toolchain settings (set variables via ~/.path)
+map <C-K> :pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
+imap <C-K> <c-o>:pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
+noremap <leader>cf :pyf ${CLANG_INCLUDE_FIXER_PATH}/clang-include-fixer.py<cr>
+noremap <leader>cr :pyf ${CLANG_RENAME_PATH}/clang-rename.py<cr>
+
 """ Vim package manager pathogen
 execute pathogen#infect()
 
