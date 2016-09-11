@@ -20,6 +20,10 @@ For `.path` some typical settings might be:
 # Add LLVM tools to PATH variable
 export PATH="$HOME/Projekte/llvm/build/bin:$PATH"
 export DYLD_LIBRARY_PATH="$HOME/Projekte/llvm/build/lib:$DYLD_LIBRARY_PATH"
+
+export CLANG_FORMAT_PATH="${LLVM_REPO}/tools/clang/tools/clang-format"
+export CLANG_INCLUDE_FIXER_PATH="${LLVM_REPO}/tools/clang/tools/extra/include-fixer/tool"
+export CLANG_RENAME_PATH="${LLVM_REPO}/tools/clang/tools/extra/clang-rename/tool"
 ```
 
 Other stuff such as gnupg settings, environment variables etc. belong to
