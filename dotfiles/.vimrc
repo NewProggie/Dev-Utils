@@ -116,6 +116,10 @@ map <c-b> :CtrlPBuffer<cr>
 let g:ctrlp_max_height = 20
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
+""" pathogen::gitgutter
+nmap <leader>hn <Plug>GitGutterNextHunk
+nmap <leader>hp <Plug>GitGutterPrevHunk
+
 """ pathogen::airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#displayed_head_limit = 16
