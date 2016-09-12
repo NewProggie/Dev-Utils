@@ -47,6 +47,7 @@ augroup project              " enable highlighting for pure c and doxygen
     autocmd!
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
 augroup END
+nnoremap <F9> :make<CR>      " map F9 key to run make
 
 """ Status line
 set laststatus=2             " always show the status line
@@ -84,9 +85,6 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
-""" Close NERDTree, if it's the last open window
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 """ Clang toolchain settings (set variables via ~/.path)
 map <C-K> :pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
 imap <C-K> <c-o>:pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
@@ -103,6 +101,8 @@ let g:NERDTreeWinSize=30
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
+""" Close NERDTree, if it's the last open window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """ pathogen::ctrlP
 let g:ctrlp_working_path_mode = 0
