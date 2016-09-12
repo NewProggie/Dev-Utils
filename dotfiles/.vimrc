@@ -94,7 +94,11 @@ noremap <leader>cf :pyf ${CLANG_INCLUDE_FIXER_PATH}/clang-include-fixer.py<cr>
 noremap <leader>cr :pyf ${CLANG_RENAME_PATH}/clang-rename.py<cr>
 
 """ Vim package manager pathogen
-execute pathogen#infect()
+if has('mac')
+  execute pathogen#infect('bundle_osx/{}')
+elseif has('unix')
+  execute pathogen#infect('bundle/{}')
+endif
 
 """ pathogen::NerdTree
 let g:NERDTreeWinPos = "left"
@@ -116,7 +120,7 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#displayed_head_limit = 16
 let g:airline_theme='newproggie'
-let g:airline#extensions#tabine#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 let g:syntastic_cpp_compiler = 'clang++'
@@ -128,3 +132,4 @@ nmap <S-t> :TagbarToggle<CR>
 """ pathogen::YouCompleteMe
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1

@@ -6,7 +6,7 @@ declare -a DOT_FILES=(".alias" ".bash_profile" ".bashrc" ".exports" \
                       ".prompt" ".tmux.conf" ".vimrc")
 
 echo "==> Symlinking dotfiles from ${DOT_REPO}"
-for file in $(find dotfiles/ -type f -maxdepth 1); do
+for file in $(find dotfiles/ -maxdepth 1 -type f); do
     home_dotfile="${HOME}/$(basename ${file})"
     if [ -e "${home_dotfile}" ]; then
         echo "====> Backup ${home_dotfile} to ${home_dotfile}.old"
@@ -25,6 +25,10 @@ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completi
 echo "==> Installing vim thirdparty plugins"
 VIM_AUTOLOAD=${HOME}/.vim/autoload
 VIM_BUNDLE=${HOME}/.vim/bundle
+if [[ "${OSTYPE}" == "darwin"* ]]; then
+    # YouCompleteMe doesn't work in a multi-os env such as Linux/OSX
+    VIM_BUNDLE=${HOME}/.vim/bundle_osx
+fi
 VIM_COLORS=${HOME}/.vim/colors
 VIM_AIRLINE_THEMES=${VIM_BUNDLE}/vim-airline-themes/autoload/airline/themes
 mkdir -p ${VIM_AUTOLOAD} ${VIM_BUNDLE} ${VIM_COLORS}
