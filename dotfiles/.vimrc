@@ -94,18 +94,14 @@ noremap <leader>cf :pyf ${CLANG_INCLUDE_FIXER_PATH}/clang-include-fixer.py<cr>
 noremap <leader>cr :pyf ${CLANG_RENAME_PATH}/clang-rename.py<cr>
 
 """ Vim package manager pathogen
-if has('mac')
-  execute pathogen#infect('bundle_osx/{}')
-elseif has('unix')
-  execute pathogen#infect('bundle/{}')
-endif
+execute pathogen#infect('bundle/{}')
 
 """ pathogen::NerdTree
 let g:NERDTreeWinPos = "left"
 let NERDTreeShowHidden=0
 let g:NERDTreeWinSize=30
 map <leader>nn :NERDTreeToggle<cr>
-map <leader>nb :NERDTreeFromBookmark 
+map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
 
 """ pathogen::ctrlP
