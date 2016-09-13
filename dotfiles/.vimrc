@@ -1,7 +1,7 @@
 " Bootstrap VIM config
 " Maintainer:   Kai Wolf <http://kai-wolf.me/>
 " Last changed: 08.2016
-" Version:      1.1
+" Version:      1.2
 
 """ Meta
 set nocompatible             " use vim, not vi
@@ -21,9 +21,9 @@ map <C-L> <C-W>l<C-W>_       " <jklh>, which directly
 map <C-H> <C-W>h<C-W>_       " mirrors cursor navigation
 map <left> :bprevious<CR>    " left arrow, cycling through buffers
 map <right> :bnext<CR>       " right arrow, cycling through buffers
-
 map <S-H> gT                 " Remap tab navigation
 map <S-L> gt                 " to H and L
+vnoremap . :normal .<CR>     " allow . to execute for each line in visual mode
 
 """ Console / Text display
 try                          " standard vim theme to use
@@ -48,6 +48,7 @@ augroup project              " enable highlighting for pure c and doxygen
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
 augroup END
 nnoremap <F9> :make<CR>      " map F9 key to run make
+map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR> " close current buffer
 
 """ Status line
 set laststatus=2             " always show the status line
@@ -133,3 +134,4 @@ nmap <S-t> :TagbarToggle<CR>
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_collect_identifiers_from_tags_files = 1

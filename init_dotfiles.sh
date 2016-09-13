@@ -48,6 +48,8 @@ echo "====> Installing vim-fugitive plugin"
 git clone git://github.com/tpope/vim-fugitive.git ${VIM_BUNDLE}/vim-fugitive
 echo "====> Installing vim-gitgutter plugin"
 git clone git://github.com/airblade/vim-gitgutter.git ${VIM_BUNDLE}/vim-gitgutter
+echo "====> Installing DoxygenToolkit plugin"
+git clone https://github.com/vim-scripts/DoxygenToolkit.vim.git ${VIM_BUNDLE}/DoxygenToolkit
 echo "====> Installing YouCompleteMe plugin (fork featuring C/C++ hints)"
 git clone --recursive https://github.com/oblitum/YouCompleteMe.git ${VIM_BUNDLE}/YouCompleteMe
 pushd ${VIM_BUNDLE}/YouCompleteMe && ./install.py --clang-completer && popd
