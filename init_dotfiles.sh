@@ -25,10 +25,6 @@ https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completi
 echo "==> Installing vim thirdparty plugins"
 VIM_AUTOLOAD=${HOME}/.vim/autoload
 VIM_BUNDLE=${HOME}/.vim/bundle
-if [[ "${OSTYPE}" == "darwin"* ]]; then
-    # YouCompleteMe doesn't work in a multi-os env such as Linux/OSX
-    VIM_BUNDLE=${HOME}/.vim/bundle_osx
-fi
 VIM_COLORS=${HOME}/.vim/colors
 VIM_AIRLINE_THEMES=${VIM_BUNDLE}/vim-airline-themes/autoload/airline/themes
 mkdir -p ${VIM_AUTOLOAD} ${VIM_BUNDLE} ${VIM_COLORS}
