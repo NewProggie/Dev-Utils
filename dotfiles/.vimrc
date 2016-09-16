@@ -30,6 +30,9 @@ try                          " standard vim theme to use
     colorscheme newproggie
 catch
 endtry
+if has('gui_running')
+    set guifont=Fira\ Mono\ Medium\ for\ Powerline:h14
+endif
 syntax on                    " show syntax highlighting
 set showcmd                  " show (partial) command in status line.
 set number                   " line numbers
