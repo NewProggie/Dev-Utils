@@ -55,6 +55,7 @@ augroup END
 map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR> " close current buffer
 
 """ Development shortcuts
+let &makeprg= 'make -C build -j4' " look for Makefile in build folder
 nnoremap <F7> :make<CR>      " map F7 key to run make
 
 """ Status line
@@ -98,6 +99,11 @@ map <C-K> :pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
 imap <C-K> <c-o>:pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
 noremap <leader>cf :pyf ${CLANG_INCLUDE_FIXER_PATH}/clang-include-fixer.py<cr>
 noremap <leader>cr :pyf ${CLANG_RENAME_PATH}/clang-rename.py<cr>
+command -range=% ClangTidy :cexpr system('clang-tidy '
+    \ . expand('%:p:.') . ' -line-filter=''[{"name":"' . expand('%:t')
+    \ . '","lines":[[' . <line1> . ',' . <line2> . ']]}]'''
+    \ . '-checks=* '
+    \ . ' \| grep ' . expand('%:t:r'))
 
 """ Vim package manager pathogen
 execute pathogen#infect('bundle/{}')
