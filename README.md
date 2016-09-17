@@ -28,3 +28,12 @@ export CLANG_RENAME_PATH="${LLVM_REPO}/tools/clang/tools/extra/clang-rename/tool
 
 Other stuff such as gnupg settings, environment variables etc. belong to
 `.extra`.
+
+## Custom VIM options
+For specific project options one can put a custom `.vimrc` in the root folder of
+the project. When starting VIM it will look for a `.vimrc` and load it
+accordingly. A good candidate may be
+
+```
+let &makeprg='make -C myBuildDir -j16'
+```

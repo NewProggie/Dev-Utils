@@ -55,7 +55,7 @@ augroup END
 map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR> " close current buffer
 
 """ Development shortcuts
-let &makeprg= 'make -C build -j4' " look for Makefile in build folder
+let &makeprg='make -C build -j4' " look for Makefile in build folder
 nnoremap <F7> :make<CR>      " map F7 key to run make
 
 """ Status line
