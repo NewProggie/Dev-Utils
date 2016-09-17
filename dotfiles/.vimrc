@@ -1,7 +1,7 @@
 " Bootstrap VIM config
 " Maintainer:   Kai Wolf <http://kai-wolf.me/>
 " Last changed: 08.2016
-" Version:      1.2
+" Version:      1.3
 
 """ Meta
 set nocompatible             " use vim, not vi
@@ -11,6 +11,8 @@ set autoread                 " watch for file changes
 set nobackup                 " don't use backup
 set nowb                     " files of
 set noswapfile               " any kind
+set exrc                     " execute local .vimrc
+set secure                   " but disable shell execution and write operations
 let mapleader = ","          " with a map leader it's possible to do extra
 let g:mapleader = ","        " key combinations
 
@@ -50,8 +52,10 @@ augroup project              " enable highlighting for pure c and doxygen
     autocmd!
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
 augroup END
-nnoremap <F9> :make<CR>      " map F9 key to run make
 map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR> " close current buffer
+
+""" Development shortcuts
+nnoremap <F7> :make<CR>      " map F7 key to run make
 
 """ Status line
 set laststatus=2             " always show the status line
