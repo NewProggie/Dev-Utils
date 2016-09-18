@@ -69,11 +69,11 @@ hi DiffDelete    cterm=bold      ctermbg=1  ctermfg=15
 hi DiffText      cterm=bold      ctermbg=3  ctermfg=8
 
 " General language constructs
-hi Statement     cterm=none      ctermbg=0  ctermfg=4  gui=none  guibg=#1D1D1D  guifg=#569CD6
-hi Keyword       cterm=none      ctermbg=0  ctermfg=4  gui=none  guibg=#1D1D1D  guifg=#569CD6
-hi Comment       cterm=none      ctermbg=0  ctermfg=2  gui=none  guibg=#1D1D1D  guifg=#608B4E
-hi Special       cterm=none      ctermbg=0  ctermfg=4  gui=none  guibg=#1D1D1D  guifg=#569CD6
-hi Delimiter     cterm=none      ctermbg=0  ctermfg=4  gui=none  guibg=#1D1D1D  guifg=#569CD6
+hi Statement     cterm=none      ctermbg=0  ctermfg=4  gui=none   guibg=#1D1D1D  guifg=#569CD6
+hi Keyword       cterm=none      ctermbg=0  ctermfg=4  gui=none   guibg=#1D1D1D  guifg=#569CD6
+hi Comment       cterm=none      ctermbg=0  ctermfg=2  gui=italic guibg=#1D1D1D  guifg=#608B4E
+hi Special       cterm=none      ctermbg=0  ctermfg=4  gui=none   guibg=#1D1D1D  guifg=#569CD6
+hi Delimiter     cterm=none      ctermbg=0  ctermfg=4  gui=none   guibg=#1D1D1D  guifg=#569CD6
 
 " C syntax highlighting
 hi PreProc       cterm=none     ctermbg=0  ctermfg=5   gui=none  guibg=#1D1D1D  guifg=#B06386
