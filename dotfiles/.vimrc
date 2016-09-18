@@ -33,7 +33,7 @@ try                          " standard vim theme to use
 catch
 endtry
 if has('gui_running')
-    set guifont=Fira\ Mono\ Medium\ for\ Powerline:h14
+    set guifont=Operator\ Mono\ Medium\ Nerd\ Font\ Plus\ Font\ Awesome:h15
 endif
 syntax on                    " show syntax highlighting
 set showcmd                  " show (partial) command in status line.
