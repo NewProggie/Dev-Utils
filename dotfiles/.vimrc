@@ -33,7 +33,7 @@ try                          " standard vim theme to use
 catch
 endtry
 if has('gui_running')
-    set guifont=Operator\ Mono\ Medium\ Nerd\ Font\ Plus\ Font\ Awesome:h15
+    set guifont=Operator\ Mono\ Medium\ for\ Powerline:h17
 endif
 syntax on                    " show syntax highlighting
 set showcmd                  " show (partial) command in status line.
@@ -112,7 +112,7 @@ execute pathogen#infect('bundle/{}')
 """ pathogen::NerdTree
 let g:NERDTreeWinPos = "left"
 let NERDTreeShowHidden=0
-let g:NERDTreeWinSize=35
+let g:NERDTreeWinSize=40
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
@@ -151,6 +151,3 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 
-""" pathogen::vim-devicons
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:DevIconsEnableFoldersOpenClose = 1
