@@ -47,8 +47,11 @@ augroup project              " enable highlighting for pure c and doxygen
     autocmd!
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
 augroup END
-nnoremap <F9> :make<CR>      " map F9 key to run make
 map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR> " close current buffer
+
+""" Development shortcuts
+nnoremap <F7> :make<CR>      " map F7 key to run make
+nnoremap <F12> :YcmCompleter GoTo<CR> " Go to definition/declaration
 
 """ Status line
 set laststatus=2             " always show the status line
@@ -98,7 +101,7 @@ execute pathogen#infect('bundle/{}')
 """ pathogen::NerdTree
 let g:NERDTreeWinPos = "left"
 let NERDTreeShowHidden=0
-let g:NERDTreeWinSize=30
+let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>

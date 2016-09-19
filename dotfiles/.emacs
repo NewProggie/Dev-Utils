@@ -115,6 +115,7 @@
                      company
                      company-c-headers
                      cpputils-cmake
+                     evil
                      neotree
                      flymake-cppcheck
                      flycheck
@@ -127,6 +128,8 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 ;; activate all packages
 (package-initialize)
+;; enable evil-mode
+(evil-mode 1)
 ;; fetch the list of available packages
 (unless package-archive-contents
   (package-refresh-contents))
