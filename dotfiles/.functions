@@ -58,6 +58,19 @@ function extract () {
   fi
 }
 
+# find executable binarys in given path
+function find_exec() {
+    if [[ -z "$1"  ]]; then
+        echo "No argument supplied"
+        return 1
+    fi
+    case "${OSTYPE}" in
+      darwin*) find $1 -perm +111 -type f ;;
+      linux*)  find $1 -executable -type f ;;
+      *)       echo "unknown ${OSTYPE}" ;;
+    esac
+}
+
 # get number of logical cpu cores
 function cores() {
     case "${OSTYPE}" in

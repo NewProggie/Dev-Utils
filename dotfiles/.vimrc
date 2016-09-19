@@ -1,7 +1,7 @@
 " Bootstrap VIM config
 " Maintainer:   Kai Wolf <http://kai-wolf.me/>
 " Last changed: 08.2016
-" Version:      1.2
+" Version:      1.3
 
 """ Meta
 set nocompatible             " use vim, not vi
@@ -11,6 +11,8 @@ set autoread                 " watch for file changes
 set nobackup                 " don't use backup
 set nowb                     " files of
 set noswapfile               " any kind
+set exrc                     " execute local .vimrc
+set secure                   " but disable shell execution and write operations
 let mapleader = ","          " with a map leader it's possible to do extra
 let g:mapleader = ","        " key combinations
 
@@ -30,6 +32,9 @@ try                          " standard vim theme to use
     colorscheme newproggie
 catch
 endtry
+if has('gui_running')
+    set guifont=Operator\ Mono\ Medium\ Nerd\ Font\ Plus\ Font\ Awesome:h15
+endif
 syntax on                    " show syntax highlighting
 set showcmd                  " show (partial) command in status line.
 set number                   " line numbers
@@ -52,6 +57,7 @@ map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR> " close current buffer
 """ Development shortcuts
 nnoremap <F7> :make<CR>      " map F7 key to run make
 nnoremap <F12> :YcmCompleter GoTo<CR> " Go to definition/declaration
+let &makeprg='make -C build -j4' " look for Makefile in build folder
 
 """ Status line
 set laststatus=2             " always show the status line
@@ -94,6 +100,11 @@ map <C-K> :pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
 imap <C-K> <c-o>:pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
 noremap <leader>cf :pyf ${CLANG_INCLUDE_FIXER_PATH}/clang-include-fixer.py<cr>
 noremap <leader>cr :pyf ${CLANG_RENAME_PATH}/clang-rename.py<cr>
+command -range=% ClangTidy :cexpr system('clang-tidy '
+    \ . expand('%:p:.') . ' -line-filter=''[{"name":"' . expand('%:t')
+    \ . '","lines":[[' . <line1> . ',' . <line2> . ']]}]'''
+    \ . '-checks=* '
+    \ . ' \| grep ' . expand('%:t:r'))
 
 """ Vim package manager pathogen
 execute pathogen#infect('bundle/{}')
@@ -139,3 +150,7 @@ let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
+
+""" pathogen::vim-devicons
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
