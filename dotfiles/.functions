@@ -60,7 +60,7 @@ function extract () {
 
 # find executable binarys in given path
 function find_exec() {
-    if [[ -z "$1"  ]]; then
+    if [[ -z "$1" ]]; then
         echo "No argument supplied"
         return 1
     fi
@@ -78,4 +78,17 @@ function cores() {
       linux*)  grep ^processor /proc/cpuinfo | wc -l ;;
       *)       echo "unknwon ${OSTYPE}" ;;
     esac
+}
+
+# dump compiler include paths
+function include_paths() {
+    local comp="c"
+    if [[ -z "${1}" ]]; then
+        echo "No compiler as argument supplied"
+        return 1
+    fi
+    if [[ "${1}" == *++ ]]; then
+        comp="c++"
+    fi
+    ${1} -E -x ${comp} - -v < /dev/null
 }

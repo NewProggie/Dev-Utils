@@ -111,8 +111,9 @@ execute pathogen#infect('bundle/{}')
 
 """ pathogen::NerdTree
 let g:NERDTreeWinPos = "left"
-let NERDTreeShowHidden=0
+let g:NERDTreeShowHidden=0
 let g:NERDTreeWinSize=40
+let g:NERDTreeIgnore=['\.vim$', '\~$', '\.git$']
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
@@ -139,9 +140,6 @@ let g:airline_theme='newproggie'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++14'
-
 """ pathogen::tagbar
 nmap <S-t> :TagbarToggle<CR>
 
@@ -151,3 +149,14 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 
+let g:cpp_class_scope_highlight = 1
+
+""" pathogen::DoxygenToolkit
+let g:DoxygenToolkit_authorName = "Kai Wolf"
+let g:DoxygenToolkit_briefTag_pre = " @brief"
+let g:DoxygenToolkit_paramTag_pre = " @param "
+let g:DoxygenToolkit_returnTag = " @return "
+let g:DoxygenToolkit_startCommentTag = "///"
+let g:DoxygenToolkit_interCommentTag = "///"
+let g:DoxygenToolkit_startCommentBlock = "///"
+let g:DoxygenToolkit_interCommentBlock = "///"
