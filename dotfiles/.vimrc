@@ -48,9 +48,10 @@ set foldcolumn=1             " add a little margin to the left
 match OverLength /\%80v.\+/  " highlight text longer than 80 columns
 set hidden                   " allow buffers to be hidden
 set encoding=utf8            " set utf8 as standard encoding
-augroup project              " enable highlighting for pure c and doxygen
+augroup project              " enable highlighting for c/c++ and doxygen
     autocmd!
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
+    autocmd BufRead,BufNewFile *.h,*.cpp set filetype=cpp.doxygen
 augroup END
 map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR> " close current buffer
 
@@ -153,10 +154,13 @@ let g:cpp_class_scope_highlight = 1
 
 """ pathogen::DoxygenToolkit
 let g:DoxygenToolkit_authorName = "Kai Wolf"
-let g:DoxygenToolkit_briefTag_pre = " @brief"
-let g:DoxygenToolkit_paramTag_pre = " @param "
-let g:DoxygenToolkit_returnTag = " @return "
-let g:DoxygenToolkit_startCommentTag = "///"
-let g:DoxygenToolkit_interCommentTag = "///"
-let g:DoxygenToolkit_startCommentBlock = "///"
-let g:DoxygenToolkit_interCommentBlock = "///"
+let g:DoxygenToolkit_licenseTag = "Copyright (c) " . strftime("%Y")
+    \ . ", Kai Wolf. All rights reserved.\<enter>"
+    \ . "Use of this source code is governed by a MIT-style license that can "
+    \ . "be\<enter>found in the LICENSE file in the top directory."
+let g:DoxygenToolkit_commentType = "C++"
+let g:DoxygenToolkit_startCommentTag = "/** "
+let g:DoxygenToolkit_interCommentTag = "* "
+let g:DoxygenToolkit_endCommentTag = "*/"
+let g:DoxygenToolkit_compactDoc = "yes"
+let g:DoxygenToolkit_compactOneLineDoc = "yes"
