@@ -104,7 +104,6 @@ noremap <leader>cr :pyf ${CLANG_RENAME_PATH}/clang-rename.py<cr>
 command -range=% ClangTidy :cexpr system('clang-tidy '
     \ . expand('%:p:.') . ' -line-filter=''[{"name":"' . expand('%:t')
     \ . '","lines":[[' . <line1> . ',' . <line2> . ']]}]'''
-    \ . '-checks=* '
     \ . ' \| grep ' . expand('%:t:r'))
 
 """ Vim package manager pathogen
