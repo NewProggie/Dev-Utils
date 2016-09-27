@@ -103,7 +103,7 @@ imap <C-K> <c-o>:pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
 """ ClangIncludeFixer
 noremap <leader>cf :pyf ${CLANG_INCLUDE_FIXER_PATH}/clang-include-fixer.py<cr>
 let g:clang_include_fixer_jump_to_include = 1
-let g:clang_include_fixer_query_mode = 1
+let g:clang_include_fixer_query_mode = 0
 
 """ ClangRename
 noremap <leader>cr :pyf ${CLANG_RENAME_PATH}/clang-rename.py<cr>
