@@ -155,11 +155,9 @@ let g:DoxygenToolkit_authorName = "Kai Wolf"
 let g:DoxygenToolkit_licenseTag = "Copyright (c) " . strftime("%Y")
     \ . ", Kai Wolf. All rights reserved.\<enter>"
     \ . "Use of this source code is governed by a MIT-style license that can "
-    \ . "be\<enter>found in the LICENSE file in the top directory."
+    \ . "be\<enter>found in the LICENSE file in the top directory.\n"
 let g:DoxygenToolkit_commentType = "C++"
-let g:DoxygenToolkit_startCommentTag = "/** "
-let g:DoxygenToolkit_interCommentTag = "* "
-let g:DoxygenToolkit_endCommentTag = "*/"
+let g:DoxygenToolkit_briefTag_pre = "" " using JAVADOC_AUTOBRIEF
 let g:DoxygenToolkit_compactDoc = "yes"
 let g:DoxygenToolkit_compactOneLineDoc = "yes"
 
