@@ -96,11 +96,19 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
-""" Clang toolchain settings (set variables via ~/.path)
+""" ClangFormat (set variables via ~/.path)
 map <C-K> :pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
 imap <C-K> <c-o>:pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
+
+""" ClangIncludeFixer
 noremap <leader>cf :pyf ${CLANG_INCLUDE_FIXER_PATH}/clang-include-fixer.py<cr>
+let g:clang_include_fixer_jump_to_include = 1
+let g:clang_include_fixer_query_mode = 1
+
+""" ClangRename
 noremap <leader>cr :pyf ${CLANG_RENAME_PATH}/clang-rename.py<cr>
+
+""" ClangTidy
 command -range=% ClangTidy :cexpr system('clang-tidy '
     \ . expand('%:p:.') . ' -line-filter=''[{"name":"' . expand('%:t')
     \ . '","lines":[[' . <line1> . ',' . <line2> . ']]}]'''
