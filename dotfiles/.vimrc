@@ -150,8 +150,6 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 
-let g:cpp_class_scope_highlight = 1
-
 """ pathogen::DoxygenToolkit
 let g:DoxygenToolkit_authorName = "Kai Wolf"
 let g:DoxygenToolkit_licenseTag = "Copyright (c) " . strftime("%Y")
@@ -164,3 +162,13 @@ let g:DoxygenToolkit_interCommentTag = "* "
 let g:DoxygenToolkit_endCommentTag = "*/"
 let g:DoxygenToolkit_compactDoc = "yes"
 let g:DoxygenToolkit_compactOneLineDoc = "yes"
+
+""" pathogen::headerguard
+let g:headerguard_use_cpp_comments = 1
+function! g:HeaderguardName()
+    " We want <PROJECT>_<PATH>_<FILE>_H_ as format based on the
+    " Google C++ Style Guide
+    let dismiss = '\('.$HOME.'\|proj.[a-zA-Z]*\|src\|source\)/'
+    let proj_path = substitute(expand('%:p'), dismiss, '', 'g')
+    return toupper(substitute(proj_path, '[^0-9a-zA-Z]', '_', 'g')) . '_'
+endfunction
