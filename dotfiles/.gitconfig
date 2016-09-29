@@ -12,6 +12,7 @@
 	sb = status -sb
 	br = branch
 	cm = !git add -A && git commit -m
+	url = config --get remote.origin.url
 	new = !sh -c 'git log --oneline $1@{1}..$1@{0} "$@"'
 	undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
 [core]

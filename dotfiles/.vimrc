@@ -114,13 +114,43 @@ command -range=% ClangTidy :cexpr system('clang-tidy '
     \ . '","lines":[[' . <line1> . ',' . <line2> . ']]}]'''
     \ . ' \| grep ' . expand('%:t:r'))
 
-""" Custom functions and commands
+""" Fix whitespace
 function! s:FixWhitespace(line1,line2)
     let l:save_cursor = getpos(".")
     silent! execute ':' . a:line1 . ',' . a:line2 . 's/\\\@<!\s\+$//'
     call setpos('.', l:save_cursor)
 endfunction
 command -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
+
+""" Highlight duplicate lines
+function! HighlightRepeats() range
+    let lineCounts={}
+    let lineNum=a:firstline
+    while lineNum <= a:lastline
+        let lineText=getline(lineNum)
+        if lineText != ""
+            let lineCounts[lineText]=(has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
+        endif
+        let lineNum=lineNum + 1
+    endwhile
+    exe 'syn clear Repeat'
+    for lineText in keys(lineCounts)
+        if lineCounts[lineText] >= 2
+            exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
+        endif
+    endfor
+endfunction
+command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
+
+""" Automatically append closing brackets, braces and quotes
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
+inoremap        (  ()<Left>
+inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
+inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
 
 """ Vim package manager pathogen
 execute pathogen#infect('bundle/{}')
@@ -160,6 +190,8 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 nmap <S-t> :TagbarToggle<CR>
 
 """ pathogen::YouCompleteMe
+let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+let g:ycm_extra_conf_globlist=['~/.vim/*']
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1

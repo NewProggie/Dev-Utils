@@ -29,7 +29,8 @@ VIM_COLORS=${HOME}/.vim/colors
 VIM_AIRLINE_THEMES=${VIM_BUNDLE}/vim-airline-themes/autoload/airline/themes
 mkdir -p ${VIM_AUTOLOAD} ${VIM_BUNDLE} ${VIM_COLORS}
 curl -LSso ${VIM_AUTOLOAD}/pathogen.vim https://tpo.pe/pathogen.vim
-
+echo "====> Symlinking global .ycm_extra_conf"
+ln -s $(pwd)/dotfiles/.ycm_extra_conf.py ${HOME}/.vim/
 echo "====> Installing vim-sensible plugin"
 git clone https://github.com/tpope/vim-sensible.git ${VIM_BUNDLE}/vim-sensible
 echo "====> Installing nerdtree plugin"
