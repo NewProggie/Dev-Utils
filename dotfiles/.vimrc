@@ -56,7 +56,8 @@ augroup END
 map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR> " close current buffer
 
 """ Development shortcuts
-nnoremap <F7> :make<CR>      " map F7 key to run make
+nnoremap <F6> :execute "!make test -C build/ ARGS='-VV'"<CR>
+nnoremap <F7> :make\|cwindow<CR>      " map F7 key to run make
 nnoremap <F12> :YcmCompleter GoTo<CR> " Go to definition/declaration
 let &makeprg='make -C build -j4' " look for Makefile in build folder
 
