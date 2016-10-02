@@ -1,7 +1,7 @@
 " Bootstrap VIM config
 " Maintainer:   Kai Wolf <http://kai-wolf.me/>
-" Last changed: 08.2016
-" Version:      1.3
+" Last changed: 10.2016
+" Version:      1.4
 
 """ Meta
 set nocompatible             " use vim, not vi
@@ -48,8 +48,14 @@ set foldcolumn=1             " add a little margin to the left
 match OverLength /\%80v.\+/  " highlight text longer than 80 columns
 set hidden                   " allow buffers to be hidden
 set encoding=utf8            " set utf8 as standard encoding
-augroup project              " enable highlighting for c/c++ and doxygen
+augroup project              " create language-specific settings
     autocmd!
+    autocmd VimEnter * highlight clear SignColumn
+    autocmd FileType python setlocal commentstring=#\ %s
+    autocmd BufEnter Makefile setlocal noexpandtab
+    autocmd BufEnter *.sh setlocal tabstop=2
+    autocmd BufEnter *.sh setlocal shiftwidth=2
+    autocmd BufEnter *.sh setlocal softtabstop=2
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
     autocmd BufRead,BufNewFile *.h,*.cpp set filetype=cpp.doxygen
 augroup END
@@ -97,40 +103,29 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
-""" ClangFormat (set variables via ~/.path)
-map <C-K> :pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
-imap <C-K> <c-o>:pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
-
-""" ClangIncludeFixer
-noremap <leader>cf :pyf ${CLANG_INCLUDE_FIXER_PATH}/clang-include-fixer.py<cr>
-let g:clang_include_fixer_jump_to_include = 1
-let g:clang_include_fixer_query_mode = 0
-
-""" ClangRename
-noremap <leader>cr :pyf ${CLANG_RENAME_PATH}/clang-rename.py<cr>
-
-""" ClangTidy
-command -range=% ClangTidy :cexpr system('clang-tidy '
-    \ . expand('%:p:.') . ' -line-filter=''[{"name":"' . expand('%:t')
-    \ . '","lines":[[' . <line1> . ',' . <line2> . ']]}]'''
-    \ . ' \| grep ' . expand('%:t:r'))
+""" Automatically append closing brackets
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
 
 """ Fix whitespace
-function! s:FixWhitespace(line1,line2)
+function s:FixWhitespace(line1,line2)
     let l:save_cursor = getpos(".")
     silent! execute ':' . a:line1 . ',' . a:line2 . 's/\\\@<!\s\+$//'
     call setpos('.', l:save_cursor)
 endfunction
-command -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
+command -range=% FixTrailingWhitespace call <SID>FixWhitespace(<line1>,<line2>)
 
 """ Highlight duplicate lines
-function! HighlightRepeats() range
+function HighlightRepeats() range
     let lineCounts={}
     let lineNum=a:firstline
     while lineNum <= a:lastline
         let lineText=getline(lineNum)
         if lineText != ""
-            let lineCounts[lineText]=(has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
+            let lineCounts[lineText]=(has_key(lineCounts, lineText)
+                \ ? lineCounts[lineText] : 0) + 1
         endif
         let lineNum=lineNum + 1
     endwhile
@@ -141,17 +136,46 @@ function! HighlightRepeats() range
         endif
     endfor
 endfunction
-command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
+command -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 
-""" Automatically append closing brackets, braces and quotes
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
-inoremap        (  ()<Left>
-inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
-inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"\<Left>"
+""" Get path to compile_commands.json
+function s:PathToCompileCommands()
+    let l:build_dir = ""
+    if !empty(findfile("compile_commands.json", "build"))
+        let l:build_dir = " -p build/ "
+    endif
+    return l:build_dir
+endfunction
+
+""" Query new param name
+function s:QueryNewName()
+    call inputsave()
+    let new_name = input('Type new name: ')
+    call inputrestore()
+    return new_name
+endfunction
+
+""" ClangFormat
+map <C-K> :pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
+imap <C-K> <c-o>:pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
+
+""" ClangTidy
+command! -range=% ClangTidy :cexpr system('clang-tidy '
+    \ . expand('%:p:.') . ' -line-filter=''[{"name":"' . expand('%:t')
+    \ . '","lines":[[' . <line1> . ',' . <line2> . ']]}]'''
+    \ . s:PathToCompileCommands() . ' \| grep ' . expand('%:t:r')) | cwindow
+
+""" ClangRename
+command! ClangRename :call system('clang-rename '
+    \ . expand('%:p:.') . ' -i ' . s:PathToCompileCommands()
+    \ . ' -offset ' . (line2byte(line("."))+col(".") - 2)
+    \ . ' -new-name ' . s:QueryNewName()) | checktime
+noremap <leader>cr :ClangRename<CR>
+
+""" ClangIncludeFixer
+noremap <leader>cf :pyf ${CLANG_INCLUDE_FIXER_PATH}/clang-include-fixer.py<cr>
+let g:clang_include_fixer_jump_to_include = 1
+let g:clang_include_fixer_query_mode = 0
 
 """ Vim package manager pathogen
 execute pathogen#infect('bundle/{}')
