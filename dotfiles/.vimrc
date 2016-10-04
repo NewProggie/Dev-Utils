@@ -53,9 +53,9 @@ augroup project              " create language-specific settings
     autocmd VimEnter * highlight clear SignColumn
     autocmd FileType python setlocal commentstring=#\ %s
     autocmd BufEnter Makefile setlocal noexpandtab
-    autocmd BufEnter *.sh setlocal tabstop=2
-    autocmd BufEnter *.sh setlocal shiftwidth=2
-    autocmd BufEnter *.sh setlocal softtabstop=2
+    autocmd BufEnter *.sh,*.yml,*.html setlocal tabstop=2
+    autocmd BufEnter *.sh,*.yml,*.html setlocal shiftwidth=2
+    autocmd BufEnter *.sh,*.yml,*.html setlocal softtabstop=2
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
     autocmd BufRead,BufNewFile *.h,*.cpp set filetype=cpp.doxygen
 augroup END
