@@ -138,23 +138,6 @@ function HighlightRepeats() range
 endfunction
 command -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 
-""" Get path to compile_commands.json
-function s:PathToCompileCommands()
-    let l:build_dir = ""
-    if !empty(findfile("compile_commands.json", "build"))
-        let l:build_dir = " -p build/ "
-    endif
-    return l:build_dir
-endfunction
-
-""" Query new param name
-function s:QueryNewName()
-    call inputsave()
-    let new_name = input('Type new name: ')
-    call inputrestore()
-    return new_name
-endfunction
-
 """ ClangFormat
 map <C-K> :pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
 imap <C-K> <c-o>:pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
@@ -163,14 +146,10 @@ imap <C-K> <c-o>:pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
 command! -range=% ClangTidy :cexpr system('clang-tidy '
     \ . expand('%:p:.') . ' -line-filter=''[{"name":"' . expand('%:t')
     \ . '","lines":[[' . <line1> . ',' . <line2> . ']]}]'''
-    \ . s:PathToCompileCommands() . ' \| grep ' . expand('%:t:r')) | cwindow
+    \ . ' \| grep ' . expand('%:t:r')) | cwindow
 
 """ ClangRename
-command! ClangRename :call system('clang-rename '
-    \ . expand('%:p:.') . ' -i ' . s:PathToCompileCommands()
-    \ . ' -offset ' . (line2byte(line("."))+col(".") - 2)
-    \ . ' -new-name ' . s:QueryNewName()) | checktime
-noremap <leader>cr :ClangRename<CR>
+noremap <leader>cr :pyf ${CLANG_RENAME_PATH}/clang-rename.py<cr>
 
 """ ClangIncludeFixer
 noremap <leader>cf :pyf ${CLANG_INCLUDE_FIXER_PATH}/clang-include-fixer.py<cr>
@@ -212,6 +191,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 """ pathogen::tagbar
+let g:tagbar_width = 50
+let g:tagbar_compact = 1
 nmap <S-t> :TagbarToggle<CR>
 
 """ pathogen::YouCompleteMe

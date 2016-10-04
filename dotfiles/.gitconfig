@@ -22,3 +22,8 @@
 	pager = less -+F
 [color]
     ui = true
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
