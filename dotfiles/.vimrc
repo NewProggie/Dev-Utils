@@ -52,6 +52,7 @@ augroup project              " create language-specific settings
     autocmd!
     autocmd VimEnter * highlight clear SignColumn
     autocmd FileType python setlocal commentstring=#\ %s
+    autocmd Filetype gitcommit setlocal spell textwidth=72
     autocmd BufEnter Makefile setlocal noexpandtab
     autocmd BufEnter *.sh,*.yml,*.html setlocal tabstop=2
     autocmd BufEnter *.sh,*.yml,*.html setlocal shiftwidth=2
