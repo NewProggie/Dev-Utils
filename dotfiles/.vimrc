@@ -110,6 +110,19 @@ inoremap {<CR>  {<CR>}<Esc>O
 inoremap {{     {
 inoremap {}     {}
 
+""" Cscope
+if has('cscope')
+    set cscopetag
+    if has('quickfix')
+        set cscopequickfix=s-,c-,d-,i-,t-,e-
+    endif
+    if filereadable("cscope.out")
+        cs add cscope.out
+    endif
+    nnoremap <leader>fr :cs find s <C-R>=expand("<cword>")<CR><CR>:cwindow<CR>
+    nnoremap <leader>fi :cs find i <C-R>=expand("<cword>")<CR><CR>:cwindow<CR>
+endif
+
 """ Fix whitespace
 function s:FixWhitespace(line1,line2)
     let l:save_cursor = getpos(".")
