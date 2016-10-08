@@ -63,6 +63,7 @@ augroup END
 map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR> " close current buffer
 
 """ Development shortcuts
+nnoremap <F5> :! ./build/main<CR>     " run the main program
 nnoremap <F6> :execute "!make test -C build/ ARGS='-VV'"<CR>
 nnoremap <F7> :make\|cwindow<CR>      " map F7 key to run make
 nnoremap <F12> :YcmCompleter GoTo<CR> " Go to definition/declaration
