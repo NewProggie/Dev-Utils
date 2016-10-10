@@ -66,6 +66,7 @@ map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR> " close current buffer
 nnoremap <F5> :! ./build/main<CR>     " run the main program
 nnoremap <F6> :execute "!make test -C build/ ARGS='-VV'"<CR>
 nnoremap <F7> :make\|cwindow<CR>      " map F7 key to run make
+nnoremap <F9> :YcmCompleter FixIt<CR> " Fix errors automatically
 nnoremap <F12> :YcmCompleter GoTo<CR> " Go to definition/declaration
 let &makeprg='make -C build -j4' " look for Makefile in build folder
 
@@ -169,7 +170,7 @@ noremap <leader>cr :pyf ${CLANG_RENAME_PATH}/clang-rename.py<cr>
 """ ClangIncludeFixer
 noremap <leader>cf :pyf ${CLANG_INCLUDE_FIXER_PATH}/clang-include-fixer.py<cr>
 let g:clang_include_fixer_jump_to_include = 1
-let g:clang_include_fixer_query_mode = 0
+let g:clang_include_fixer_query_mode = 1
 
 """ Vim package manager pathogen
 execute pathogen#infect('bundle/{}')
