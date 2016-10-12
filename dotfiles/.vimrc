@@ -105,12 +105,6 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
-""" Automatically append closing brackets
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
-
 """ Cscope
 if has('cscope')
     set cscopetag
