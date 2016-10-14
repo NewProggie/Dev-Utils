@@ -47,9 +47,10 @@ hi ModeMsg       cterm=bold      ctermbg=0  ctermfg=10 gui=bold   guibg=#161616 
 " Visual aid
 hi MatchParen    cterm=bold      ctermbg=0  ctermfg=15 gui=none   guibg=#161616  guifg=#F7F7F7
 hi Visual        cterm=none      ctermbg=8  ctermfg=15 gui=none   guibg=#3C3C3C  guifg=#F7F7F7
-hi NonText       cterm=bold      ctermbg=0  ctermfg=8  gui=bold   guibg=#161616  guifg=#B0B0B0
-hi Error         cterm=none      ctermbg=1  ctermfg=7  gui=none   guibg=#A94744  guifg=#A94744
-hi ErrorMsg      cterm=none      ctermbg=1  ctermfg=7  gui=none   guibg=#A94744  guifg=#A94744
+hi NonText       cterm=none      ctermbg=0  ctermfg=0  gui=none   guibg=#161616  guifg=#161616
+hi Error         cterm=none      ctermbg=1  ctermfg=7  gui=bold   guibg=#161616  guifg=#A94744
+hi ErrorMsg      cterm=none      ctermbg=1  ctermfg=7  gui=bold   guibg=#161616  guifg=#A94744
+hi Todo          cterm=none      ctermbg=1  ctermfg=3  gui=bold   guibg=#161616  guifg=#D69831
 hi Repeat        cterm=bold      ctermbg=0  ctermfg=1  gui=bold   guibg=#161616  guifg=#A94744
 
 " Completion menu
