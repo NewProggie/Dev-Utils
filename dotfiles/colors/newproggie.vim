@@ -40,7 +40,7 @@ hi IncSearch     cterm=none      ctermbg=3  ctermfg=8  gui=none  guibg=#D69831  
 
 " Prompt / Status
 hi StatusLine    cterm=none      ctermbg=8  ctermfg=15 gui=none  guibg=#3C3C3C  guifg=#F7F7F7
-hi StatusLineNC  cterm=none      ctermbg=15 ctermfg=8  gui=none  guibg=#3C3C3C  guifg=#F7F7F7
+hi StatusLineNC  cterm=none      ctermbg=15 ctermfg=8  gui=none  guibg=#F7F7F7  guifg=#3C3C3C
 hi Title         cterm=none      ctermbg=0  ctermfg=4  gui=none                 guifg=#569CD6
 hi ModeMsg       cterm=bold      ctermbg=0  ctermfg=10 gui=bold
 
@@ -50,6 +50,7 @@ hi Visual        cterm=none      ctermbg=8  ctermfg=15 gui=none  guibg=#3C3C3C  
 hi NonText       cterm=bold      ctermbg=0  ctermfg=8  gui=bold                 guifg=#B0B0B0
 hi Error         cterm=none      ctermbg=1  ctermfg=7  gui=none                 guifg=#A94744
 hi ErrorMsg      cterm=none      ctermbg=1  ctermfg=7  gui=none                 guifg=#A94744
+hi Repeat        cterm=bold      ctermbg=0  ctermfg=1  gui=bold                 guifg=#A94744
 
 " Completion menu
 hi Pmenu         cterm=none      ctermbg=8  ctermfg=7  gui=none  guibg=#3C3C3C  guifg=#B0B0B0

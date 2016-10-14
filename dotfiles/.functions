@@ -92,3 +92,8 @@ function include_paths() {
     fi
     ${1} -E -x ${comp} - -v < /dev/null
 }
+
+# start clean bash without any env paths set
+function clean_bash() {
+    env -i bash --noprofile --norc
+}
