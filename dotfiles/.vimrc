@@ -119,6 +119,7 @@ if has('cscope')
     endif
     nnoremap <leader>fr :cs find s <C-R>=expand("<cword>")<CR><CR>:cwindow<CR>
     nnoremap <leader>fi :cs find i <C-R>=expand("<cword>")<CR><CR>:cwindow<CR>
+    command GenCScopeDb :! cscope -bv $(find . -name *.cpp -o -iname *.h)
 endif
 
 """ Fix whitespace
