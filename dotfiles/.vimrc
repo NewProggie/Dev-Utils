@@ -33,12 +33,12 @@ try                          " standard vim theme to use
 catch
 endtry
 if has('gui_running')
-    set guioptions-=m        "remove menu bar
-    set guioptions-=T        "remove toolbar
-    set guioptions-=r        "remove right-hand scroll bar
-    set guioptions-=L        "remove left-hand scroll bar
+    set guioptions-=m        " remove menu bar
+    set guioptions-=T        " remove toolbar
+    set guioptions-=r        " remove right-hand scroll bar
+    set guioptions-=L        " remove left-hand scroll bar
     if has('gui_win32')
-        set guifont=Operator_Mono_Book:h10:cANSI
+        set guifont=Fira_Code:h10:cANSI
     else
         set guifont=Operator\ Mono\ Book\ for\ Powerline:h15
     endif
@@ -76,7 +76,7 @@ nnoremap <F6> :execute "!make test -C build/ ARGS='-VV'"<CR>
 nnoremap <F7> :make\|cwindow<CR>      " map F7 key to run make
 nnoremap <F9> :YcmCompleter FixIt<CR> " Fix errors automatically
 nnoremap <F12> :YcmCompleter GoTo<CR> " Go to definition/declaration
-let &makeprg='make -C build -j4' " look for Makefile in build folder
+let &makeprg='cmake --build build'
 
 """ Status line
 set laststatus=2             " always show the status line
