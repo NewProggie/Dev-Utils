@@ -1,6 +1,6 @@
 # Partly stolen from:
 # https://jonasdevlieghere.com/a-better-youcompleteme-config/
-from os import walk, path as os_path
+from os import walk, path as os_path, name as os_name
 from logging import info
 from ycm_core import CompilationDatabase
 
@@ -9,6 +9,20 @@ BASE_FLAGS = [
     '-fexceptions', '-std=c++14', '-xc++', '-I', '-I.', 'include',
     '-I/usr/lib/', '-I/usr/include/'
 ]
+
+# Partly taken from: https://github.com/Valloric/YouCompleteMe/issues/1932
+if os_name == 'nt':
+    BASE_FLAGS = [
+        '-std=c++14', '-x', 'c++',
+        '-I', 'C:/Program Files/Microsoft Visual Studio 14.0/VC/include',
+        '-I', 'C:/Program Files/Windows Kits/8.1/Include/um',
+        '-I', 'C:/Program Files/Windows Kits/8.1/Include/shared',
+        '-I', 'C:/Program Files/Windows Kits/8.1/Include/winrt',
+        '-I', 'C:/Program Files/Windows Kits/10/Include/10.0.10240.0/ucrt'
+        '--target', 'i686-pc-windows-msvc19.00.24210',
+        '/link', '/LIBPATH:"C:\Program Files\Microsoft Visual Studio 14.0\VC\lib"',
+        '/EHsc']
+
 
 SOURCE_EXTENSIONS = ['.cpp', '.cxx', '.cc', '.c', '.m', '.mm']
 HEADER_EXTENSIONS = ['.h', '.hxx', '.hpp', '.hh']

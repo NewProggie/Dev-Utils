@@ -158,8 +158,8 @@ endfunction
 command -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 
 """ ClangFormat
-map <C-K> :pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
-imap <C-K> <c-o>:pyf ${CLANG_FORMAT_PATH}/clang-format.py<cr>
+map <C-K> :pyf $CLANG_FORMAT_PATH/clang-format.py<cr>
+imap <C-K> <c-o>:pyf $CLANG_FORMAT_PATH/clang-format.py<cr>
 
 """ ClangTidy
 command! -range=% ClangTidy :cexpr system('clang-tidy '
@@ -168,10 +168,10 @@ command! -range=% ClangTidy :cexpr system('clang-tidy '
     \ . ' \| grep ' . expand('%:t:r')) | cwindow
 
 """ ClangRename
-noremap <leader>cr :pyf ${CLANG_RENAME_PATH}/clang-rename.py<cr>
+noremap <leader>cr :pyf $CLANG_RENAME_PATH/clang-rename.py<cr>
 
 """ ClangIncludeFixer
-noremap <leader>cf :pyf ${CLANG_INCLUDE_FIXER_PATH}/clang-include-fixer.py<cr>
+noremap <leader>cf :pyf $CLANG_INCLUDE_FIXER_PATH/clang-include-fixer.py<cr>
 let g:clang_include_fixer_jump_to_include = 1
 let g:clang_include_fixer_query_mode = 1
 
@@ -217,6 +217,9 @@ nmap <S-t> :TagbarToggle<CR>
 """ pathogen::YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+if has('win32')
+    let g:ycm_global_ycm_extra_conf=$HOME . '\vimfiles\.ycm_extra_conf.py'
+endif
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
