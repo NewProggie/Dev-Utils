@@ -33,11 +33,18 @@ try                          " standard vim theme to use
 catch
 endtry
 if has('gui_running')
-    set guifont=Operator\ Mono\ Book\ for\ Powerline:h15
-    set guioptions-=L
-    set transparency=1
+    set guioptions-=m        "remove menu bar
+    set guioptions-=T        "remove toolbar
+    set guioptions-=r        "remove right-hand scroll bar
+    set guioptions-=L        "remove left-hand scroll bar
+    if has('gui_win32')
+        set guifont=Operator_Mono_Medium:h12:cANSI
+    else
+        set guifont=Operator\ Mono\ Book\ for\ Powerline:h15
+    endif
 endif
 syntax on                    " show syntax highlighting
+set encoding=utf8            " set utf8 as standard encoding
 set showcmd                  " show (partial) command in status line.
 set number                   " line numbers
 set noerrorbells             " disable bells in error case
@@ -49,7 +56,6 @@ set wildignore=*.o,*~,.git\* " ignore compiled files
 set foldcolumn=1             " add a little margin to the left
 match OverLength /\%80v.\+/  " highlight text longer than 80 columns
 set hidden                   " allow buffers to be hidden
-set encoding=utf8            " set utf8 as standard encoding
 augroup project              " create language-specific settings
     autocmd!
     autocmd VimEnter * highlight clear SignColumn
