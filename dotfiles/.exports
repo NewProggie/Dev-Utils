@@ -10,7 +10,7 @@ export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
 # omit duplicates and commands that begin with a space from history.
-export HISTCONTROL='ignoreboth';
+export HISTCONTROL='ignoreboth:erasedups';
 
 # highlight section titles in manual pages.
 export LESS_TERMCAP_md="${yellow}";

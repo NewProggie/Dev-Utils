@@ -26,6 +26,7 @@ function man() {
 
 # plot stuff directly from the command line.
 # Example: seq 100 | sed 's/.*/s(&)/' | bc -l | plot linecolor 2
+# -> Generate 100 numbers, wrap it in s(<num>) and calc sin(<num>)
 function plot() {
     { echo 'plot "-"' "$@"; cat; } | gnuplot -persist;
 }

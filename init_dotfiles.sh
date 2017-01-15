@@ -56,6 +56,8 @@ git clone --recursive https://github.com/oblitum/YouCompleteMe.git ${VIM_BUNDLE}
 pushd ${VIM_BUNDLE}/YouCompleteMe && ./install.py --clang-completer && popd
 echo "====> Installing vim-headerguard plugin"
 git clone https://github.com/drmikehenry/vim-headerguard.git ${VIM_BUNDLE}/vim-headerguard
+echo "====> Installing vim-cmake-syntax plugin"
+git clone git://github.com/nickhutchinson/vim-cmake-syntax.git ${VIM_BUNDLE}/vim-cmake-syntax
 
 echo "==> Installing VIM color themes from ${DOT_REPO}"
 wget --quiet "${DOT_REPO}/colors/newproggie.vim" -O "${VIM_COLORS}/newproggie.vim"

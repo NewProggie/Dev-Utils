@@ -24,6 +24,12 @@ alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
 
+# Export pbcopy / pbpaste to linux 
+if [[ "${OSTYPE}" == "linux"* ]]; then
+    alias pbcopy="xclip -selection clipboard"
+    alias pbpaste="xclip -selection clipboard -o"
+fi
+
 # Get current public ip address
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 
