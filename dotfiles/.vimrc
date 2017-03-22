@@ -167,6 +167,7 @@ command -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 """ ClangFormat
 map <C-K> :pyf $CLANG_FORMAT_PATH/clang-format.py<cr>
 imap <C-K> <c-o>:pyf $CLANG_FORMAT_PATH/clang-format.py<cr>
+let g:clang_format_fallback_style = "Google"
 
 """ ClangTidy
 command! -range=% ClangTidy :cexpr system('clang-tidy '

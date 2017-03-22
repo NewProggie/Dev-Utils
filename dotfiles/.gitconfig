@@ -39,3 +39,5 @@
   process = git-lfs filter-process
 [difftool]
   prompt = false
+[credential]
+  helper = cache --timeout=3600
