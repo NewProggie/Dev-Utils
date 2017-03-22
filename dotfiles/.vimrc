@@ -3,6 +3,12 @@
 " Last changed: 10.2016
 " Version:      1.4
 
+""" System
+if has("unix")
+    " Prepend /usr/bin before PATH so that YCM works with brew installed python
+    let $PATH = '/usr/bin:' . $PATH
+endif
+
 """ Meta
 set nocompatible             " use vim, not vi
 set fileformats=unix,dos,mac " support all three newline formats
@@ -52,6 +58,7 @@ set list                     " show invisible characters
 set listchars=tab:>·,trail:· " but only show tabs and trailing whitespace
 set wildmenu                 " command line completion with list of matches
 set so=7                     " set 7 lines to the cursor when moving vertically
+set noro                     " open vimdiff in write mode (instead of readonly)
 set wildignore=*.o,*~,.git\* " ignore compiled files
 set foldcolumn=1             " add a little margin to the left
 match OverLength /\%80v.\+/  " highlight text longer than 80 columns
@@ -174,6 +181,9 @@ noremap <leader>cr :pyf $CLANG_RENAME_PATH/clang-rename.py<cr>
 noremap <leader>cf :pyf $CLANG_INCLUDE_FIXER_PATH/clang-include-fixer.py<cr>
 let g:clang_include_fixer_jump_to_include = 1
 let g:clang_include_fixer_query_mode = 1
+
+""" Git diff tool
+command! GitDiff !git difftool
 
 """ Vim package manager pathogen
 execute pathogen#infect('bundle/{}')

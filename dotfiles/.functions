@@ -99,11 +99,3 @@ function clean_bash() {
     env -i bash --noprofile --norc
 }
 
-# Prevent calling cmake inside source directory
-function cmake() {
-  if [ -e "CMakeLists.txt" ]; then
-    echo "CMakeLists.txt present. Preventing in-source builds..."
-  else
-    $(which cmake) $*
-  fi
-}

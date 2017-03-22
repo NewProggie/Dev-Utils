@@ -1,34 +1,41 @@
 [user]
-	name = Kai Wolf
-	email = kai.wolf@gmail.com
+  name = Kai Wolf
+  email = kai.wolf@gmail.com
 [push]
-	default = simple
+  default = simple
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	ll = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
-	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-	co = checkout
-	ci = commit
-	sb = status -sb
-	br = branch
-	cm = !git add -A && git commit -m
-	fix = "!f() { vim -p $(git diff --name-only | uniq); }; f"
-	url = config --get remote.origin.url
-	new = !sh -c 'git log --oneline $1@{1}..$1@{0} "$@"'
-	undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+  # Show all configured aliases
+  aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  ll = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  co = checkout
+  ci = commit
+  sb = status -sb
+  br = branch
+  cm = !git add -A && git commit -m
+  fix = "!f() { vim -p $(git diff --name-only | uniq); }; f"
+  url = config --get remote.origin.url
+  new = !sh -c 'git log --oneline $1@{1}..$1@{0} "$@"'
+  undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+  # Delete all local merged branches
+  dlb = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d
 [core]
-	editor = vim
-	fileMode = true
-	autocrlf = input
-	pager = less -+F
+  editor = vim
+  fileMode = true
+  autocrlf = input
+  pager = less -+F
 [color]
-    ui = true
+  ui = true
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+  tool = vimdiff
+  conflictstyle = diff3
 [mergetool]
-	prompt = false
+  prompt = false
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  required = true
+  process = git-lfs filter-process
+[difftool]
+  prompt = false
