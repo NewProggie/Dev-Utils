@@ -47,6 +47,8 @@ echo "====> Installing vim-airline-themes plugin"
 git clone https://github.com/vim-airline/vim-airline-themes ${VIM_BUNDLE}/vim-airline-themes
 echo "====> Installing vim-fugitive plugin"
 git clone git://github.com/tpope/vim-fugitive.git ${VIM_BUNDLE}/vim-fugitive
+echo "====> Installing vim-dispatch plugin"
+git clone git://github.com/tpope/vim-dispatch.git ${VIM_BUNDLE}/vim-dispatch
 echo "====> Installing vim-gitgutter plugin"
 git clone git://github.com/airblade/vim-gitgutter.git ${VIM_BUNDLE}/vim-gitgutter
 echo "====> Installing DoxygenToolkit plugin"
