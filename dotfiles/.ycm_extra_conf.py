@@ -58,11 +58,13 @@ def FindNearest(path, target, build_folder):
         raise RuntimeError("Could not find " + target)
 
     if (build_folder):
-        candidate = os_path.join(parent, build_folder, target)
-        if (os_path.isfile(candidate) or os_path.isdir(candidate)):
-            info("Found nearest " + target + " in build folder at " +
-                 candidate)
-            return candidate
+        # possible suffixes are _linux, _mac, _win (e.g. build_linux)
+        for suffix in ["_linux", "_mac", "_win"]:
+            candidate = os_path.join(parent, build_folder + suffix, target)
+            if (os_path.isfile(candidate) or os_path.isdir(candidate)):
+                info("Found nearest " + target + " in build folder at " +
+                    candidate)
+                return candidate
 
     return FindNearest(parent, target, build_folder)
 

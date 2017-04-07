@@ -27,6 +27,10 @@
   pager = less -+F
 [color]
   ui = true
+[color "status"]
+  added = green
+  changed = yellow bold
+  untracked = red bold
 [merge]
   tool = vimdiff
   conflictstyle = diff3
