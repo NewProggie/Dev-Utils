@@ -3,8 +3,13 @@
 " Last changed: 10.2016
 " Version:      1.4
 
+""" Identify platform
+let g:MAC = has('macunix') || has('unix')
+let g:LINUX = has('unix') && !has('macunix') && !has('win32unix')
+let g:WINDOWS = has('win32') || has('win64')
+
 """ System
-if has("unix")
+if g:MAC
     " Prepend /usr/bin before PATH so that YCM works with brew installed python
     let $PATH = '/usr/bin:' . $PATH
 endif
@@ -43,7 +48,7 @@ if has('gui_running')
     set guioptions-=T        " remove toolbar
     set guioptions-=r        " remove right-hand scroll bar
     set guioptions-=L        " remove left-hand scroll bar
-    if has('gui_win32')
+    if has('gui_win32') || has('gui_win64')
         set guifont=Fira_Code:h10:cANSI
     else
         set guifont=Operator\ Mono\ Book\ for\ Powerline:h15
@@ -220,6 +225,11 @@ let g:airline_theme='newproggie'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+""" pathogen::vim-cpp-enhanced-highlight
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+
 """ pathogen::tagbar
 let g:tagbar_width = 50
 let g:tagbar_compact = 1
@@ -228,7 +238,7 @@ nmap <S-t> :TagbarToggle<CR>
 """ pathogen::YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
-if has('win32')
+if g:WINDOWS
     let g:ycm_global_ycm_extra_conf=$HOME . '\vimfiles\.ycm_extra_conf.py'
 endif
 let g:ycm_add_preview_to_completeopt = 1

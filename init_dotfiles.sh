@@ -45,6 +45,8 @@ echo "====> Installing vim-airline plugin"
 git clone https://github.com/vim-airline/vim-airline.git ${VIM_BUNDLE}/vim-airline
 echo "====> Installing vim-airline-themes plugin"
 git clone https://github.com/vim-airline/vim-airline-themes ${VIM_BUNDLE}/vim-airline-themes
+echo "====> Installing vim-cpp-enhanced-highlight"
+git clone https://github.com/octol/vim-cpp-enhanced-highlight ${VIM_BUNDLE}/vim-cpp-enhanced-highlight
 echo "====> Installing vim-fugitive plugin"
 git clone git://github.com/tpope/vim-fugitive.git ${VIM_BUNDLE}/vim-fugitive
 echo "====> Installing vim-dispatch plugin"
