@@ -1,7 +1,7 @@
 " Bootstrap VIM config
 " Maintainer:   Kai Wolf <http://kai-wolf.me/>
-" Last changed: 10.2016
-" Version:      1.4
+" Last changed: 04.2017
+" Version:      1.5
 
 """ Identify platform
 let g:MAC = has('macunix') || has('unix')
@@ -139,6 +139,17 @@ if has('cscope')
     nnoremap <leader>fi :cs find i <C-R>=expand("<cword>")<CR><CR>:cwindow<CR>
     command GenCScopeDb :! cscope -bv $(find . -name *.cpp -o -iname *.h)
 endif
+
+""" Search in path (with Shift-S)
+function SearchEverywhere()
+    let filetypes = {}
+    let filetypes['c'] = '{c,cc,cpp,h}'
+    let search = input('Enter search: ')
+    set wildignore+=thirdparty/**,build/**
+    exe "vimgrep /" . search . "/ **/*." . get(filetypes, &filetype, expand('%:e'))
+endfunction
+command SearchEverywhere call SearchEverywhere() | cwindow
+map <S-S> :SearchEverywhere<cr>
 
 """ Fix whitespace
 function s:FixWhitespace(line1,line2)
