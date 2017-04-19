@@ -8,7 +8,12 @@ function mkd() {
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
 function tre() {
-    tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+    if hash tree 2>/dev/null; then
+        tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+    else
+        pwd=$(pwd)
+        find $pwd -print | sed -e "s;$pwd;\.;g;s;[^/]*\/;|__;g;s;__|; |;g"
+    fi
 }
 
 # colorized man pages
