@@ -8,7 +8,7 @@ function mkd() {
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
 function tre() {
-    if hash tree 2>/dev/null; then
+    if type tree &> /dev/null; then
         tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
     else
         pwd=$(pwd)
