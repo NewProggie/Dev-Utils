@@ -6,14 +6,14 @@ from ycm_core import CompilationDatabase
 
 BASE_FLAGS = [
     '-Wall', '-Wextra', '-Werror', '-Wno-long-long', '-Wno-variadic-macros',
-    '-fexceptions', '-std=c++14', '-xc++', '-I', '-I.', 'include',
+    '-fexceptions', '-std=c++11', '-xc++', '-I', '-I.', 'include',
     '-I/usr/lib/', '-I/usr/include/'
 ]
 
 # Partly taken from: https://github.com/Valloric/YouCompleteMe/issues/1932
 if os_name == 'nt':
     BASE_FLAGS = [
-        '-std=c++14', '-x', 'c++',
+        '-std=c++11', '-x', 'c++',
         '-I', 'C:/Program Files/Microsoft Visual Studio 14.0/VC/include',
         '-I', 'C:/Program Files/Windows Kits/8.1/Include/um',
         '-I', 'C:/Program Files/Windows Kits/8.1/Include/shared',
@@ -58,11 +58,13 @@ def FindNearest(path, target, build_folder):
         raise RuntimeError("Could not find " + target)
 
     if (build_folder):
-        candidate = os_path.join(parent, build_folder, target)
-        if (os_path.isfile(candidate) or os_path.isdir(candidate)):
-            info("Found nearest " + target + " in build folder at " +
-                 candidate)
-            return candidate
+        # possible suffixes are _linux, _mac, _win (e.g. build_linux)
+        for suffix in ["_linux", "_mac", "_win"]:
+            candidate = os_path.join(parent, build_folder + suffix, target)
+            if (os_path.isfile(candidate) or os_path.isdir(candidate)):
+                info("Found nearest " + target + " in build folder at " +
+                    candidate)
+                return candidate
 
     return FindNearest(parent, target, build_folder)
 
