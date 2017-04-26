@@ -1,7 +1,7 @@
 " Bootstrap VIM config
 " Maintainer:   Kai Wolf <http://kai-wolf.me/>
 " Last changed: 04.2017
-" Version:      1.5
+" Version:      1.6
 
 """ Identify platform
 let g:MAC = has('macunix') || has('unix')
@@ -73,6 +73,7 @@ augroup project              " create language-specific settings
     autocmd VimEnter * highlight clear SignColumn
     autocmd FileType python setlocal commentstring=#\ %s
     autocmd Filetype gitcommit setlocal spell textwidth=72
+    autocmd FileType c,cpp setlocal equalprg=clang-format
     autocmd BufEnter Makefile setlocal noexpandtab
     autocmd BufEnter *.sh,*.yml,*.html,*.txt setlocal tabstop=2
     autocmd BufEnter *.sh,*.yml,*.html,*.txt setlocal shiftwidth=2
@@ -277,3 +278,6 @@ function! g:HeaderguardName()
     let proj_path = substitute(expand('%:p'), dismiss, '', 'g')
     return toupper(substitute(proj_path, '[^0-9a-zA-Z]', '_', 'g')) . '_'
 endfunction
+
+""" pathogen::vim-markdown-preview
+let g:vim_markdown_preview_github = 1

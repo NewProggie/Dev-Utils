@@ -62,6 +62,8 @@ echo "====> Installing vim-headerguard plugin"
 git clone https://github.com/drmikehenry/vim-headerguard.git ${VIM_BUNDLE}/vim-headerguard
 echo "====> Installing vim-cmake-syntax plugin"
 git clone git://github.com/nickhutchinson/vim-cmake-syntax.git ${VIM_BUNDLE}/vim-cmake-syntax
+echo "====> Installing vim-markdown-preview plugin"
+git clone https://github.com/JamshedVesuna/vim-markdown-preview.git ${VIM_BUNDLE}/vim-markdown-preview
 
 echo "==> Installing VIM color themes from ${DOT_REPO}"
 wget --quiet "${DOT_REPO}/colors/newproggie.vim" -O "${VIM_COLORS}/newproggie.vim"
