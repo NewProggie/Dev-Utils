@@ -100,6 +100,16 @@ set statusline+=\ %{getcwd()} " Current dir
 set statusline+=%=%-14.(%l,%c%V%)\ %p%%\  " Right aligned file nav info
 
 """ Text editing and searching
+if executable('ag')          " use silversearcher, if available
+  " use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  set grepformat=%f:%l:%c%m
+
+  " use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 set nohlsearch               " turn of highlighting for searched expressions
 set incsearch                " incremental search rules
 set ignorecase               " case insensitive matching
@@ -143,11 +153,13 @@ endif
 
 """ Search in path (with Shift-S)
 function SearchEverywhere()
-    let filetypes = {}
-    let filetypes['c'] = '{c,cc,cpp,h}'
-    let search = input('Enter search: ')
-    set wildignore+=thirdparty/**,build/**
-    exe "vimgrep /" . search . "/ **/*." . get(filetypes, &filetype, expand('%:e'))
+    let search_term = input('Enter search: ')
+    if !empty(search_term)
+        execute 'silent grep' search_term | copen
+    else
+        echo "Empty search term"
+    endif
+    redraw!
 endfunction
 command SearchEverywhere call SearchEverywhere() | cwindow
 map <S-S> :SearchEverywhere<cr>
@@ -218,7 +230,7 @@ map <leader>nf :NERDTreeFind<cr>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
     \ && b:NERDTree.isTabTree()) | q | endif
 
-""" pathogen::ctrlP
+""" pathogen::CtrlP
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_map = '<c-f>'
 map <leader>j :CtrlP<cr>
