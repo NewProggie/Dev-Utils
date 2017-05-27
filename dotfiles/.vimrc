@@ -137,6 +137,13 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
+""" Yapf
+if executable('yapf')
+    command! -range=% Yapf :cexpr system('yapf '
+        \ . '--lines ' . <line1> . '-' . <line2> . ' --in-place '
+        \ . expand('%:p:.') | checktime
+endif
+
 """ Cscope
 if has('cscope')
     set cscopetag
@@ -293,3 +300,4 @@ endfunction
 
 """ pathogen::vim-markdown-preview
 let g:vim_markdown_preview_github = 1
+let g:vim_markdown_preview_browser='Google Chrome'
