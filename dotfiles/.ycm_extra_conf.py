@@ -1,6 +1,7 @@
 # Partly stolen from:
 # https://jonasdevlieghere.com/a-better-youcompleteme-config/
 from os import walk, path as os_path, name as os_name
+from platform import system
 from logging import info
 from ycm_core import CompilationDatabase
 
@@ -47,6 +48,13 @@ def GetCompilationInfoForFile(database, filename):
     return database.GetCompilationInfoForFile(filename)
 
 
+def GetBuildFolderSubPath():
+    if system() == 'Darwin':
+        return ['/x64-macosx-debug', '/x64-macosx-release']
+    elif system() == 'Linux':
+        return ['/x64-linux-debug', '/x64-linux-release']
+    return ['/debug', '/release']
+
 def FindNearest(path, target, build_folder):
     candidate = os_path.join(path, target)
     if (os_path.isfile(candidate) or os_path.isdir(candidate)):
@@ -58,8 +66,8 @@ def FindNearest(path, target, build_folder):
         raise RuntimeError("Could not find " + target)
 
     if (build_folder):
-        # possible suffixes are _linux, _mac, _win (e.g. build_linux)
-        for suffix in ["_linux", "_mac", "_win"]:
+        # searching for compile_commands.json
+        for suffix in GetBuildFolderSubPath():
             candidate = os_path.join(parent, build_folder + suffix, target)
             if (os_path.isfile(candidate) or os_path.isdir(candidate)):
                 info("Found nearest " + target + " in build folder at " +

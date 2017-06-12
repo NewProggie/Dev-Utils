@@ -49,6 +49,9 @@ echo "====> Installing vim-cpp-enhanced-highlight"
 git clone https://github.com/octol/vim-cpp-enhanced-highlight ${VIM_BUNDLE}/vim-cpp-enhanced-highlight
 echo "====> Installing vim-fugitive plugin"
 git clone git://github.com/tpope/vim-fugitive.git ${VIM_BUNDLE}/vim-fugitive
+echo "====> Installing vim-fugitive stash extension"
+wget -O ${HOME}/.vim/plugin/fugitive-stash.vim \
+  https://raw.githubusercontent.com/MobiusHorizons/fugitive-stash.vim/master/plugin/fugitive-stash.vim
 echo "====> Installing vim-dispatch plugin"
 git clone git://github.com/tpope/vim-dispatch.git ${VIM_BUNDLE}/vim-dispatch
 echo "====> Installing vim-gitgutter plugin"

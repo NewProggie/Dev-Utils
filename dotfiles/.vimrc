@@ -146,7 +146,9 @@ if has('cscope')
     if filereadable("cscope.out")
         cs add cscope.out
     endif
+    " find symbol
     nnoremap <leader>fr :cs find s <C-R>=expand("<cword>")<CR><CR>:cwindow<CR>
+    " find include
     nnoremap <leader>fi :cs find i <C-R>=expand("<cword>")<CR><CR>:cwindow<CR>
     command GenCScopeDb :! cscope -bv $(find . -name *.cpp -o -iname *.h)
 endif
