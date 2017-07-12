@@ -106,6 +106,14 @@ function clean_bash() {
 
 # start ssh-agent to avoid reentering passphrase
 function start_ssh_agent() {
+    for agent in /tmp/ssh-*/agent.*; do
+        export SSH_AUTH_SOCK=${agent}
+        if ssh-add -l 2>&1 > /dev/null; then
+            echo "Found working SSH agent. Reutilize old one."
+            ssh-add -l
+            return
+        fi
+    done
     echo "Initialising new SSH agent..."
     eval "$(ssh-agent -s)"
     ssh-add
