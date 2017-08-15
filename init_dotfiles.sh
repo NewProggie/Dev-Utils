@@ -26,8 +26,9 @@ echo "==> Installing vim thirdparty plugins"
 VIM_AUTOLOAD=${HOME}/.vim/autoload
 VIM_BUNDLE=${HOME}/.vim/bundle
 VIM_COLORS=${HOME}/.vim/colors
+VIM_SYNTAX=${HOME}/.vim/syntax
 VIM_AIRLINE_THEMES=${VIM_BUNDLE}/vim-airline-themes/autoload/airline/themes
-mkdir -p ${VIM_AUTOLOAD} ${VIM_BUNDLE} ${VIM_COLORS}
+mkdir -p ${VIM_AUTOLOAD} ${VIM_BUNDLE} ${VIM_COLORS} ${VIM_SYNTAX}
 curl -LSso ${VIM_AUTOLOAD}/pathogen.vim https://tpo.pe/pathogen.vim
 echo "====> Symlinking global .ycm_extra_conf"
 ln -s $(pwd)/dotfiles/.ycm_extra_conf.py ${HOME}/.vim/
@@ -67,6 +68,9 @@ echo "====> Installing vim-cmake-syntax plugin"
 git clone git://github.com/nickhutchinson/vim-cmake-syntax.git ${VIM_BUNDLE}/vim-cmake-syntax
 echo "====> Installing vim-markdown-preview plugin"
 git clone https://github.com/JamshedVesuna/vim-markdown-preview.git ${VIM_BUNDLE}/vim-markdown-preview
+echo "====> Installing gnuplot syntax highlighting"
+wget -O ${VIM_SYNTAX}/gnuplot.vim \
+  https://raw.githubusercontent.com/vim-scripts/gnuplot-syntax-highlighting/master/syntax/gnuplot.vim
 
 echo "==> Installing VIM color themes from ${DOT_REPO}"
 wget --quiet "${DOT_REPO}/colors/newproggie.vim" -O "${VIM_COLORS}/newproggie.vim"

@@ -80,6 +80,7 @@ augroup project              " create language-specific settings
     autocmd BufEnter *.sh,*.yml,*.html,*.txt setlocal softtabstop=2
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
     autocmd BufRead,BufNewFile *.h,*.cpp set filetype=cpp.doxygen
+    autocmd BufRead,BufNewFile *.gp set filetype=gnuplot
 augroup END
 map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR> " close current buffer
 
@@ -141,7 +142,7 @@ map <leader>s? z=
 if executable('yapf')
     command! -range=% Yapf :cexpr system('yapf '
         \ . '--lines ' . <line1> . '-' . <line2> . ' --in-place '
-        \ . expand('%:p:.') | checktime
+        \ . expand('%:p')) | checktime
 endif
 
 """ Cscope
