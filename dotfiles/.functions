@@ -81,7 +81,7 @@ function find_exec() {
 function cores() {
     case "${OSTYPE}" in
       darwin*) sysctl -n hw.ncpu ;;
-      linux*)  grep ^processor /proc/cpuinfo | wc -l ;;
+      linux*)  grep -c ^processor /proc/cpuinfo ;;
       *)       echo "unknwon ${OSTYPE}" ;;
     esac
 }
@@ -106,6 +106,14 @@ function clean_bash() {
 
 # start ssh-agent to avoid reentering passphrase
 function start_ssh_agent() {
+    for agent in /tmp/ssh-*/agent.*; do
+        export SSH_AUTH_SOCK=${agent}
+        if ssh-add -l 2>&1 > /dev/null; then
+            echo "Found working SSH agent. Reutilize old one."
+            ssh-add -l
+            return
+        fi
+    done
     echo "Initialising new SSH agent..."
     eval "$(ssh-agent -s)"
     ssh-add
@@ -150,5 +158,16 @@ function git_standup() {
         echo "${GIT_OUT}"
     else
         echo "Seems like ${AUTHOR} did nothing!"
+    fi
+}
+
+# set tmux pane title to hostname on ssh connections
+function ssh() {
+    if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
+        tmux rename-window "$(echo $* | rev | cut -d ' ' -f1 | rev | cut -d . -f 1)"
+        command ssh "$@"
+        tmux set-window-option automatic-rename "on" 1>/dev/null
+    else
+        command ssh "$@"
     fi
 }
