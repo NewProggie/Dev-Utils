@@ -12,6 +12,9 @@ else # OS X `ls`
     colorflag="-G"
 fi
 
+# List available graphic cards
+alias graphic_cards="lspci | grep -i --color 'vga\|3d\|2d'"
+
 # List all files colorized in long format
 alias ll="ls -lahF ${colorflag}"
 
