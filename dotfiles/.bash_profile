@@ -7,6 +7,9 @@ esac
 # add `~/bin` to the PATH variable
 export PATH="$HOME/bin:$PATH";
 
+# export GOPATH for local workspace
+export GOPATH=$HOME/bin
+
 # load the shell dotfiles, and then some:
 # ~/.path can be used to extend PATH
 # ~/.extra can be used for other settings we don't want to commit

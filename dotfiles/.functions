@@ -119,6 +119,34 @@ function start_ssh_agent() {
     ssh-add
 }
 
+# get total number of stars for given github user
+function github_user_stars() {
+    usage() { echo -e "github_user_stars \n\t[-u <user>]" 1>&2; }
+
+    GH_URL=https://api.github.com/users
+    USER=NewProggie
+    local OPTIND
+    while getopts ":u:h" opt; do
+        case ${opt} in h|u)
+            declare "option_${opt}=${OPTARG:-0}" ;; \?)
+        esac
+    done
+    shift $((OPTIND-1))
+
+    if [[ ${option_h} ]]; then usage; return; fi
+    if [[ ${option_u} ]]; then USER="$option_u"; fi
+
+    NUM_REPOS=$(curl -s ${GH_URL}/${USER} | \
+      awk '/public_repos/{gsub(",", ""); print $2}')
+    PAGES=$(( (NUM_REPOS + 100 - 1) / 100 ))
+    i=0
+    while [ $i -lt $PAGES ]; do
+        curl -s "${GH_URL}/${USER}/repos?per_page=100&page=$((i + 1))" | \
+          awk '/stargazers_count/{gsub(",",""); print $2}'
+        i=$[$i+1]
+    done
+}
+
 # recall what I did on the last working day
 function git_standup() {
     usage() { echo -e "git_standup \n\t[-a <author>]\n\t[-d <days-ago>]" 1>&2; }
@@ -128,7 +156,7 @@ function git_standup() {
     GIT_PRETTY_FORMAT='%Cred%h%Creset - %s %Cgreen(%cd) %C(bold blue)<%an>%Creset'
 
     local OPTIND
-    while getopts "hd:a:" opt; do
+    while getopts "d:a:h" opt; do
         case ${opt} in h|d|a)
             declare "option_${opt}=${OPTARG:-0}" ;; \?)
         esac
