@@ -10,6 +10,10 @@ export PATH="$HOME/bin:$PATH";
 # export GOPATH for local workspace
 export GOPATH=$HOME/bin
 
+# Export correct locale settings
+export LC_ALL=de_DE.UTF-8
+export LANG=de_DE.UTF-8
+
 # load the shell dotfiles, and then some:
 # ~/.path can be used to extend PATH
 # ~/.extra can be used for other settings we don't want to commit
