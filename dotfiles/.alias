@@ -41,3 +41,6 @@ alias tmux="tmux -2"
 
 # Start VIM without loading config file
 alias vimnc="vim -u NONE"
+
+# Alias for summing a column
+alias mksum="paste -sd+ - | bc"
