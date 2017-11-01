@@ -6,7 +6,7 @@
 [alias]
   # Show all configured aliases
   aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
-  ll = log --graph --abbrev=12 --pretty=format:'%C(auto,yellow) changeset:   %<(59,trunc)%h%Creset%n user:        %an <%ae>%n date:        %<(59,trunc)%ad%n summary:     %<(59,trunc)%s%n'
+	ll = log --graph --abbrev=15 --pretty=format:'%C(auto,yellow) changeset:   %C(auto,bold)%h  %Creset%C(auto,yellow)%d%Creset%n user:        %an <%ae>%n date:        %<(59,trunc)%ad%n summary:     %<(59,trunc)%s%n'
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
   co = checkout
   ci = commit
