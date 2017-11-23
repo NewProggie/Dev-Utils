@@ -140,11 +140,12 @@ function github_user_stars() {
       awk '/public_repos/{gsub(",", ""); print $2}')
     PAGES=$(( (NUM_REPOS + 100 - 1) / 100 ))
     i=0
+    echo -n "${USER}: "
     while [ $i -lt $PAGES ]; do
         curl -s "${GH_URL}/${USER}/repos?per_page=100&page=$((i + 1))" | \
           awk '/stargazers_count/{gsub(",",""); print $2}'
         i=$[$i+1]
-    done
+    done | sed '$!s/$/+/' | tr -d '\n' | xargs echo | bc
 }
 
 # recall what I did on the last working day
