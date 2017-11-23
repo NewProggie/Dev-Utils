@@ -199,3 +199,35 @@ function ssh() {
         command ssh "$@"
     fi
 }
+
+# decimal to roman number converter
+function roman() {
+    if [[ -z "$1" ]]; then
+        echo "No argument supplied"
+    fi
+    printf %$1s | tr ' ' 'I' | \
+    sed '
+        s/IIIII/V/g
+        s/IIII/IV/g
+        s/VV/X/g
+        s/VIV/IX/g
+        s/XXXXX/L/g
+        s/XXXX/XL/g
+        s/LL/C/g
+        s/LXL/XC/g
+        s/CCCCC/D/g
+        s/CCCC/CD/g
+        s/DD/M/g
+        s/DCD/CM/
+    '
+    echo
+}
+#    if [[ -z "$1" ]]; then
+#        echo "No argument supplied"
+#        return 1
+#    fi
+#    case "${OSTYPE}" in
+#      darwin*) find $1 -perm +111 -type f ;;
+#      linux*)  find $1 -executable -type f ;;
+#      *)       echo "unknown ${OSTYPE}" ;;
+#    esac
