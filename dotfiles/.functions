@@ -223,12 +223,3 @@ function roman() {
     '
     echo
 }
-#    if [[ -z "$1" ]]; then
-#        echo "No argument supplied"
-#        return 1
-#    fi
-#    case "${OSTYPE}" in
-#      darwin*) find $1 -perm +111 -type f ;;
-#      linux*)  find $1 -executable -type f ;;
-#      *)       echo "unknown ${OSTYPE}" ;;
-#    esac
