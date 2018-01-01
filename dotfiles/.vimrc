@@ -232,7 +232,7 @@ execute pathogen#infect('bundle/{}')
 let g:NERDTreeWinPos = "left"
 let g:NERDTreeShowHidden=0
 let g:NERDTreeWinSize=40
-let g:NERDTreeIgnore=['\.vim$', '\~$', '\.git$']
+let g:NERDTreeIgnore=['\.vim$', '\~$', '\.git$', '\.pyc$']
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark
 map <leader>nf :NERDTreeFind<cr>
