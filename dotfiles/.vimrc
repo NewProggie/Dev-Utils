@@ -1,7 +1,7 @@
 " Bootstrap VIM config
 " Maintainer:   Kai Wolf <http://kai-wolf.me/>
-" Last changed: 04.2017
-" Version:      1.6
+" Last changed: 01.2018
+" Version:      1.7
 
 """ Identify platform
 let g:MAC = has('macunix') || has('unix')
@@ -15,7 +15,6 @@ if g:MAC
 endif
 
 """ Meta
-set nocompatible             " use vim, not vi
 set fileformats=unix,dos,mac " support all three newline formats
 set viminfo=                 " don't use or save viminfo files
 set autoread                 " watch for file changes
@@ -121,7 +120,6 @@ nnoremap t <c-]>             " ctags shortcut (t =tag and jumping back with Ctrl
 
 """ Indentations and tabs
 set autoindent               " set the cursor at same indent as line above
-set smartindent              " try to be smart about indenting (C-style)
 set expandtab                " expand <Tab>s with spaces
 set shiftwidth=4             " spaces for each step of (auto) indent
 set softtabstop=4            " set virtual tab stop (compat for 8-wide tabs)
@@ -162,7 +160,7 @@ if has('cscope')
 endif
 
 """ Search in path (with Shift-S)
-function SearchEverywhere()
+function SearchEverywhere() abort
     let search_term = input('Enter search: ')
     if !empty(search_term)
         execute 'silent grep' search_term | copen
@@ -175,7 +173,7 @@ command SearchEverywhere call SearchEverywhere() | cwindow
 map <S-S> :SearchEverywhere<cr>
 
 """ Fix whitespace
-function s:FixWhitespace(line1,line2)
+function s:FixWhitespace(line1,line2) abort
     let l:save_cursor = getpos(".")
     silent! execute ':' . a:line1 . ',' . a:line2 . 's/\\\@<!\s\+$//'
     call setpos('.', l:save_cursor)
@@ -183,7 +181,7 @@ endfunction
 command -range=% FixTrailingWhitespace call <SID>FixWhitespace(<line1>,<line2>)
 
 """ Highlight duplicate lines
-function HighlightRepeats() range
+function HighlightRepeats() range abort
     let lineCounts={}
     let lineNum=a:firstline
     while lineNum <= a:lastline
@@ -293,7 +291,7 @@ let g:DoxygenToolkit_compactOneLineDoc = "yes"
 
 """ pathogen::headerguard
 let g:headerguard_use_cpp_comments = 1
-function! g:HeaderguardName()
+function! g:HeaderguardName() abort
     " We want <PROJECT>_<PATH>_<FILE>_H_ as format based on the
     " Google C++ Style Guide
     let dismiss = '\('.$HOME.'\|proj.[a-zA-Z]*\|src\|source\)/'
