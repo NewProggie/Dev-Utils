@@ -1,0 +1,8 @@
+#!/bin/bash
+current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+case $(uname -s) in
+  Linux*)   bash $current_dir/install/bootstrap-posix-dev-utils.sh;;
+  Darwin*)  bash $current_dir/install/bootstrap-posix-dev-utils.sh;;
+  *)        echo "Unknown host."
+esac
