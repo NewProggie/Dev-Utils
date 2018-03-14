@@ -2,14 +2,14 @@
 ;; Emacs Version: 24.4
 
 ;; == VARIABLES ==
-(setq OSX_FONT "Ubuntu Mono-14")
+(setq OSX_FONT "Operator Mono for Powerline-15")
 (setq WIN_FONT "Consolas-12")
 
 ;; == WINDOW SETTINGS ==
 ;; align emacs window to the right
 (setq default-frame-alist
     '((top . 30) (left . 900)
-	(width . 140) (height . 70)))
+    (width . 140) (height . 70)))
 ;; set F5 for toggling fullscreen
 (global-set-key (kbd "<f5>") 'toggle-frame-fullscreen)
 
@@ -119,7 +119,6 @@
                      neotree
                      flymake-cppcheck
                      flycheck
-                     org-mac-link
                      powerline))
 ;; melpa package manager and archives
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -129,7 +128,7 @@
 ;; activate all packages
 (package-initialize)
 ;; enable evil-mode
-(evil-mode 1)
+;;(evil-mode 1)
 ;; fetch the list of available packages
 (unless package-archive-contents
   (package-refresh-contents))
@@ -190,6 +189,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (powerline flycheck flymake-cppcheck neotree evil cpputils-cmake company-c-headers company clang-format auto-complete-clang auto-complete autopair)))
  '(safe-local-variable-values (quote ((TeX-master . t)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
