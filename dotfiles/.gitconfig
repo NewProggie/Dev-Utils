@@ -6,7 +6,7 @@
 [alias]
   # Show all configured aliases
   aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
-	ll = log --graph --abbrev=15 --pretty=format:'%C(auto,yellow) changeset:   %C(auto,bold)%h  %Creset%C(auto,yellow)%d%Creset%n user:        %an <%ae>%n date:        %<(59,trunc)%ad%n summary:     %<(59,trunc)%s%n'
+  ll = log --graph --abbrev=15 --pretty=format:'%C(auto,yellow) changeset:   %C(auto,bold)%h  %Creset%C(auto,yellow)%d%Creset%n user:        %an <%ae>%n date:        %<(59,trunc)%ad%n summary:     %<(59,trunc)%s%n'
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
   co = checkout
   ci = commit
@@ -23,7 +23,7 @@
   editor = vim
   fileMode = true
   autocrlf = input
-  pager = less -+F
+  pager = diff-so-fancy | less --tabs=4 -RFX
 [color]
   ui = true
 [color "status"]
@@ -44,3 +44,19 @@
   prompt = false
 [credential]
   helper = cache --timeout=3600
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+[color "diff"]
+  meta = yellow
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[diff-so-fancy]
+  markEmptyLines = false
+  changeHunkIndicators = true
+  stripLeadingSymbols = false

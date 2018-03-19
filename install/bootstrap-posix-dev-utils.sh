@@ -18,6 +18,12 @@ done
 source "${HOME}/.bash_profile"
 unset file
 
+echo "==> Installing diff-so-fancy"
+mkdir -p ${HOME}/bin
+wget -O ${HOME}/bin/diff-so-fancy \
+  https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+chmod +x ${HOME}/bin/diff-so-fancy
+
 echo "==> Installing git bash completion"
 curl -LSso "${HOME}/.git-completion.bash" \
 https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
