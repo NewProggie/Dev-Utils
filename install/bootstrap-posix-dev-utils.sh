@@ -19,8 +19,7 @@ source "${HOME}/.bash_profile"
 unset file
 
 echo "==> Installing diff-so-fancy"
-mkdir -p ${HOME}/bin
-wget -O ${HOME}/bin/diff-so-fancy \
+wget -O /usr/local/bin/diff-so-fancy \
   https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
 chmod +x ${HOME}/bin/diff-so-fancy
 
