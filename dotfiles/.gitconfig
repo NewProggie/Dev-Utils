@@ -1,6 +1,7 @@
 [user]
   name = Kai Wolf
   email = kai.wolf@gmail.com
+	signingkey = 69DC6C3B6D496F4A
 [push]
   default = simple
 [alias]
@@ -61,3 +62,5 @@
   markEmptyLines = false
   changeHunkIndicators = true
   stripLeadingSymbols = false
+[gpg]
+	program = gpg2
