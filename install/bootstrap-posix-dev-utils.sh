@@ -6,7 +6,7 @@ declare -a DOT_FILES=(".alias" ".bash_profile" ".bashrc" ".exports" \
                       ".prompt" ".tmux.conf" ".vimrc")
 
 echo "==> Symlinking dotfiles from ${DOT_REPO}"
-for file in $(find dotfiles/ -maxdepth 1 -type f); do
+for file in $(find dotfiles -maxdepth 1 -type f); do
     home_dotfile="${HOME}/$(basename ${file})"
     if [ -e "${home_dotfile}" ]; then
         echo "====> Backup ${home_dotfile} to ${home_dotfile}.old"
