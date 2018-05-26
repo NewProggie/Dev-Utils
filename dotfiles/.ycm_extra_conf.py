@@ -49,11 +49,7 @@ def GetCompilationInfoForFile(database, filename):
 
 
 def GetBuildFolderSubPath():
-    if system() == 'Darwin':
-        return ['/x64-macosx-debug', '/x64-macosx-release']
-    elif system() == 'Linux':
-        return ['/x64-linux-debug', '/x64-linux-release']
-    return ['/debug', '/release']
+    return ['/', '/debug', '/release']
 
 def FindNearest(path, target, build_folder):
     candidate = os_path.join(path, target)
