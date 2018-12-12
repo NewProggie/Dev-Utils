@@ -1,0 +1,36 @@
+
+# ## Commit template ##
+#
+# Imperative short (<50 chars) summary #<taskid>
+#
+# List all co-authors, so version control systems can connect teams.
+# Co-authored-by: Name <name@example.com>
+# Co-authored-by: Name <name@example.com>
+#
+# Optional more detailed explanation here. Wrap it to about 72 characters
+# or so. The blank line separating the summary from the body is cricital;
+# tools like rebase can get confused if you run the two together.
+#
+# Further paragraphs come after blank lines.
+#
+#  - Bullet points are okay, too
+#
+#  - Typically hyphens or asterisks are used for bullets, preceded by a
+#    single, space with blank linens in between
+#
+# ## Help ##
+#
+# Subject line imperative uppercase verbs:
+#
+#   Add = Create a capability e.g. feature, test, dependency.
+#   Drop = Delete a capability e.g. feature, test, dependency.
+#   Fix = Fix an issue e.g. bug, typo, accident, misstatement.
+#   Bump = Increase the version of something e.g. a dependency.
+#   Make = Change the build process, or tools, or infrastructure.
+#   Start = Begin doing something; e.g. enable a toggle, feature flag, etc.
+#   Stop = End doing something; e.g. disable a toggle, feature flag, etc.
+#   Optimize = Change that MUST be just about performance, e.g. speed up code.
+#   Document = Change that MUST be only in the documentation, e.g. help files.
+#   Refactor = Change that MUST be just refactoring.
+#   Reformat = Change that MUST be just format, e.g. indent line, trim space
+#   Rephrase = Change that MUST be just textual, e.g. edit a comment, doc, etc.

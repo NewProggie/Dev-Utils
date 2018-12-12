@@ -1,6 +1,7 @@
 $DOT_REPO = "https://raw.githubusercontent.com/NewProggie/Dev-Utils/master/dotfiles"
 $DOT_FILES = @(".alias", ".bash_profile", ".bashrc", ".exports", ".functions")
-$DOT_FILES += @(".gdbinit", ".gitconfig", ".inputrc", ".prompt", ".tmux.conf", ".vimrc")
+$DOT_FILES += @(".gdbinit", ".gitconfig", ".inputrc", ".prompt", ".tmux.conf")
+$DOT_FILES += @(".git_commit_template.txt", ".vimrc")
 
 Write-Host "==> Copying dotfiles from ${DOT_REPO}"
 $dotfile_path = Split-Path -Path $PSScriptRoot -Parent

@@ -1,7 +1,8 @@
 [user]
   name = Kai Wolf
   email = kai.wolf@gmail.com
-	signingkey = 69DC6C3B6D496F4A
+[commit]
+  template = ~/.git_commit_template.txt
 [push]
   default = simple
 [alias]
@@ -63,4 +64,4 @@
   changeHunkIndicators = true
   stripLeadingSymbols = false
 [gpg]
-	program = gpg2
+  program = gpg2

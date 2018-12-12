@@ -3,7 +3,7 @@
 DOT_REPO=https://raw.githubusercontent.com/NewProggie/Dev-Utils/master/dotfiles
 declare -a DOT_FILES=(".alias" ".bash_profile" ".bashrc" ".exports" \
                       ".functions" ".gdbinit" ".gitconfig" ".inputrc" \
-                      ".prompt" ".tmux.conf" ".vimrc")
+                      ".git_commit_template.txt" ".prompt" ".tmux.conf" ".vimrc")
 
 echo "==> Symlinking dotfiles from ${DOT_REPO}"
 for file in $(find dotfiles -maxdepth 1 -type f); do
