@@ -6,27 +6,46 @@ from logging import info
 from ycm_core import CompilationDatabase
 
 BASE_FLAGS = [
-    '-Wall', '-Wextra', '-Werror', '-Wno-long-long', '-Wno-variadic-macros',
-    '-fexceptions', '-std=c++11', '-xc++', '-I', '-I.', 'include',
-    '-I/usr/lib/', '-I/usr/include/'
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-long-long",
+    "-Wno-variadic-macros",
+    "-fexceptions",
+    "-std=c++11",
+    "-xc++",
+    "-I",
+    "-I.",
+    "include",
+    "-I/usr/lib/",
+    "-I/usr/include/",
 ]
 
 # Partly taken from: https://github.com/Valloric/YouCompleteMe/issues/1932
-if os_name == 'nt':
+if os_name == "nt":
     BASE_FLAGS = [
-        '-std=c++11', '-x', 'c++',
-        '-I', 'C:/Program Files/Microsoft Visual Studio 14.0/VC/include',
-        '-I', 'C:/Program Files/Windows Kits/8.1/Include/um',
-        '-I', 'C:/Program Files/Windows Kits/8.1/Include/shared',
-        '-I', 'C:/Program Files/Windows Kits/8.1/Include/winrt',
-        '-I', 'C:/Program Files/Windows Kits/10/Include/10.0.10240.0/ucrt'
-        '--target', 'i686-pc-windows-msvc19.00.24210',
-        '/link', '/LIBPATH:"C:\Program Files\Microsoft Visual Studio 14.0\VC\lib"',
-        '/EHsc']
+        "-std=c++11",
+        "-x",
+        "c++",
+        "-I",
+        "C:/Program Files/Microsoft Visual Studio 14.0/VC/include",
+        "-I",
+        "C:/Program Files/Windows Kits/8.1/Include/um",
+        "-I",
+        "C:/Program Files/Windows Kits/8.1/Include/shared",
+        "-I",
+        "C:/Program Files/Windows Kits/8.1/Include/winrt",
+        "-I",
+        "C:/Program Files/Windows Kits/10/Include/10.0.10240.0/ucrt" "--target",
+        "i686-pc-windows-msvc19.00.24210",
+        "/link",
+        '/LIBPATH:"C:\Program Files\Microsoft Visual Studio 14.0\VC\lib"',
+        "/EHsc",
+    ]
 
 
-SOURCE_EXTENSIONS = ['.cpp', '.cxx', '.cc', '.c', '.m', '.mm']
-HEADER_EXTENSIONS = ['.h', '.hxx', '.hpp', '.hh']
+SOURCE_EXTENSIONS = [".cpp", ".cxx", ".cc", ".c", ".m", ".mm"]
+HEADER_EXTENSIONS = [".h", ".hxx", ".hpp", ".hh"]
 
 
 def IsHeaderFile(filename):
@@ -40,8 +59,7 @@ def GetCompilationInfoForFile(database, filename):
         for extension in SOURCE_EXTENSIONS:
             replacement_file = basename + extension
             if os_path.exists(replacement_file):
-                compilation_info = database.GetCompilationInfoForFile(
-                    replacement_file)
+                compilation_info = database.GetCompilationInfoForFile(replacement_file)
                 if compilation_info.compiler_flags_:
                     return compilation_info
         return None
@@ -49,25 +67,25 @@ def GetCompilationInfoForFile(database, filename):
 
 
 def GetBuildFolderSubPath():
-    return ['/', '/debug', '/release']
+    return ["/", "/debug", "/release"]
+
 
 def FindNearest(path, target, build_folder):
     candidate = os_path.join(path, target)
-    if (os_path.isfile(candidate) or os_path.isdir(candidate)):
+    if os_path.isfile(candidate) or os_path.isdir(candidate):
         info("Found nearest " + target + " at " + candidate)
         return candidate
 
     parent = os_path.dirname(os_path.abspath(path))
-    if (parent == path):
+    if parent == path:
         raise RuntimeError("Could not find " + target)
 
-    if (build_folder):
+    if build_folder:
         # searching for compile_commands.json
         for suffix in GetBuildFolderSubPath():
             candidate = os_path.join(parent, build_folder + suffix, target)
-            if (os_path.isfile(candidate) or os_path.isdir(candidate)):
-                info("Found nearest " + target + " in build folder at " +
-                    candidate)
+            if os_path.isfile(candidate) or os_path.isdir(candidate):
+                info("Found nearest " + target + " in build folder at " + candidate)
                 return candidate
 
     return FindNearest(parent, target, build_folder)
@@ -78,13 +96,13 @@ def MakeRelativePathsInFlagsAbsolute(flags, working_directory):
         return list(flags)
     new_flags = []
     make_next_absolute = False
-    path_flags = ['-isystem', '-I', '-iquote', '--sysroot=']
+    path_flags = ["-isystem", "-I", "-iquote", "--sysroot="]
     for flag in flags:
         new_flag = flag
 
         if make_next_absolute:
             make_next_absolute = False
-            if not flag.startswith('/'):
+            if not flag.startswith("/"):
                 new_flag = os_path.join(working_directory, flag)
 
         for path_flag in path_flags:
@@ -93,7 +111,7 @@ def MakeRelativePathsInFlagsAbsolute(flags, working_directory):
                 break
 
             if flag.startswith(path_flag):
-                path = flag[len(path_flag):]
+                path = flag[len(path_flag) :]
                 new_flag = path_flag + os_path.join(working_directory, path)
                 break
 
@@ -104,7 +122,7 @@ def MakeRelativePathsInFlagsAbsolute(flags, working_directory):
 
 def FlagsForInclude(root):
     try:
-        include_path = FindNearest(root, 'include')
+        include_path = FindNearest(root, "include")
         flags = []
         for dirroot, dirnames, filenames in walk(include_path):
             for dir_path in dirnames:
@@ -119,8 +137,7 @@ def FlagsForCompilationDatabase(root, filename):
     try:
         # Last argument of next function is the name of the build folder for
         # out of source projects
-        compilation_db_path = FindNearest(root, 'compile_commands.json',
-                                          'build')
+        compilation_db_path = FindNearest(root, "compile_commands.json", "build")
         compilation_db_dir = os_path.dirname(compilation_db_path)
         info("Set compilation database directory to " + compilation_db_dir)
         compilation_db = CompilationDatabase(compilation_db_dir)
@@ -129,12 +146,11 @@ def FlagsForCompilationDatabase(root, filename):
             return None
         compilation_info = GetCompilationInfoForFile(compilation_db, filename)
         if not compilation_info:
-            info("No compilation info for " + filename +
-                 " in compilation database")
+            info("No compilation info for " + filename + " in compilation database")
             return None
         return MakeRelativePathsInFlagsAbsolute(
-            compilation_info.compiler_flags_,
-            compilation_info.compiler_working_dir_)
+            compilation_info.compiler_flags_, compilation_info.compiler_working_dir_
+        )
     except:
         return None
 
@@ -149,4 +165,4 @@ def FlagsForFile(filename):
         include_flags = FlagsForInclude(root)
         if include_flags:
             final_flags = final_flags + include_flags
-    return {'flags': final_flags, 'do_cache': True}
+    return {"flags": final_flags, "do_cache": True}
