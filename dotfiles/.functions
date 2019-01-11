@@ -3,6 +3,27 @@ function mkd() {
     mkdir -p "$@" && cd "$_";
 }
 
+# shrink given pdf file using either Ghostscript or ImageMagick
+function shrink_pdf() {
+    if [[ -z "$1" ]]; then
+        echo "No input argument supplied"
+        return -1
+    elif [[ -z "$2" ]]; then
+        echo "No output argument supplied"
+        return -1
+    fi
+
+    if [[ -x "$(command -v gs)" ]]; then
+        gs -sDEVICE=pdfwrite -dDownsampleColorImages=true \
+          -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE \
+          -dQUIET -dBATCH -sOutputFile="$2" "$1"
+    elif [[ -x "$(command -v convert)" ]]; then
+        convert -density 150 "$1" -compress JPEG "$2"
+    else
+        echo "No proper commandline tool found"
+    fi
+}
+
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
 # the `.git` directory, listing directories first. The output gets piped into
 # `less` with options to preserve color and line numbers, unless the output is
@@ -205,6 +226,7 @@ function ssh() {
 function roman() {
     if [[ -z "$1" ]]; then
         echo "No argument supplied"
+        return -1
     fi
     printf %$1s | tr ' ' 'I' | \
     sed '
