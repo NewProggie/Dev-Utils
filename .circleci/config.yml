@@ -1,5 +1,13 @@
 version: 2
 jobs:
+  shellcheck:
+    docker:
+      - image: nlknguyen/alpine-shellcheck:latest
+    steps:
+      - checkout
+      - run:
+          name: Check bootstrap bash script
+          command: shellcheck install/bootstrap-posix-dev-utils.sh
   build_on_linux:
     docker:
       - image: circleci/buildpack-deps
@@ -18,7 +26,10 @@ jobs:
           command: bash -e install/bootstrap-posix-dev-utils.sh
 workflows:
   version: 2
-  build_all_platforms:
+  workflow:
     jobs:
-      - build_on_linux
+      - shellcheck
+      - build_on_linux:
+          requires:
+            - shellcheck
       - build_on_macos
