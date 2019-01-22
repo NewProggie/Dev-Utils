@@ -19,9 +19,16 @@ source "${HOME}/.bash_profile"
 unset file
 
 echo "==> Installing diff-so-fancy"
-wget -O /usr/local/bin/diff-so-fancy \
-  https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
-chmod +x ${HOME}/bin/diff-so-fancy
+if touch /usr/local/bin/diff-so-fancy 2> /dev/null; then
+  wget -O /usr/local/bin/diff-so-fancy \
+    https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+  chmod +x /usr/local/bin/diff-so-fancy
+else
+  mkdir -p ${HOME}/bin
+  wget -O ${HOME}/bin/diff-so-fancy \
+    https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+  chmod +x ${HOME}/bin/diff-so-fancy
+fi
 
 echo "==> Installing git bash completion"
 curl -LSso "${HOME}/.git-completion.bash" \
@@ -32,8 +39,9 @@ VIM_AUTOLOAD=${HOME}/.vim/autoload
 VIM_BUNDLE=${HOME}/.vim/bundle
 VIM_COLORS=${HOME}/.vim/colors
 VIM_SYNTAX=${HOME}/.vim/syntax
+VIM_PLUGIN=${HOME}/.vim/plugin
 VIM_AIRLINE_THEMES=${VIM_BUNDLE}/vim-airline-themes/autoload/airline/themes
-mkdir -p ${VIM_AUTOLOAD} ${VIM_BUNDLE} ${VIM_COLORS} ${VIM_SYNTAX}
+mkdir -p ${VIM_AUTOLOAD} ${VIM_BUNDLE} ${VIM_COLORS} ${VIM_SYNTAX} ${VIM_PLUGIN}
 curl -LSso ${VIM_AUTOLOAD}/pathogen.vim https://tpo.pe/pathogen.vim
 echo "====> Symlinking global .ycm_extra_conf"
 ln -s $(pwd)/dotfiles/.ycm_extra_conf.py ${HOME}/.vim/
@@ -56,7 +64,7 @@ git clone https://github.com/octol/vim-cpp-enhanced-highlight ${VIM_BUNDLE}/vim-
 echo "====> Installing vim-fugitive plugin"
 git clone git://github.com/tpope/vim-fugitive.git ${VIM_BUNDLE}/vim-fugitive
 echo "====> Installing vim-fugitive stash extension"
-wget -O ${HOME}/.vim/plugin/fugitive-stash.vim \
+wget -O ${VIM_PLUGIN}/fugitive-stash.vim \
   https://raw.githubusercontent.com/MobiusHorizons/fugitive-stash.vim/master/plugin/fugitive-stash.vim
 echo "====> Installing vim-dispatch plugin"
 git clone git://github.com/tpope/vim-dispatch.git ${VIM_BUNDLE}/vim-dispatch

@@ -7,4 +7,4 @@ jobs:
       - checkout
       - run:
           name: Bootstrap dev utilities
-          command: bash -e bootstrap
+          command: bash -e install/bootstrap-posix-dev-utils.sh
