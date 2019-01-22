@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Check bootstrap bash script
+          name: Lint bootstrap bash script
           command: shellcheck install/bootstrap-posix-dev-utils.sh
   build_on_linux:
     docker:
