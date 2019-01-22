@@ -2,6 +2,8 @@
 Common development utils such as format styles, coding guidelines etc.
 
 [![CircleCI](https://circleci.com/gh/NewProggie/Dev-Utils.svg?style=svg)](https://circleci.com/gh/NewProggie/Dev-Utils)
+[![Build status](https://ci.appveyor.com/api/projects/status/mtywvysqne7ggqin?svg=true)](https://ci.appveyor.com/project/NewProggie/dev-utils)
+
 
 ## Setup
 Simply clone this repository and execute the `init_dotfiles.sh` script like so:

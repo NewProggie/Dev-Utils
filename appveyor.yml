@@ -1,0 +1,7 @@
+version: 1.0.{build}
+build:
+  verbosity: minimal
+
+build_script:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - powershell.exe -NoProfile -ExecutionPolicy Bypass "& {& '%~dp0install\bootstrap-win-dev-utils.ps1'}"
