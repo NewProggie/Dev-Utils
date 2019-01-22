@@ -1,6 +1,8 @@
 # Dev-Utils
 Common development utils such as format styles, coding guidelines etc.
 
+[![CircleCI](https://circleci.com/gh/NewProggie/Dev-Utils.svg?style=svg)](https://circleci.com/gh/NewProggie/Dev-Utils)
+
 ## Setup
 Simply clone this repository and execute the `init_dotfiles.sh` script like so:
 
