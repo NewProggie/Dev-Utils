@@ -32,4 +32,3 @@ workflows:
       - build_on_linux:
           requires:
             - shellcheck
-      - build_on_macos
