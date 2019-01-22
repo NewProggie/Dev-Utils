@@ -8,7 +8,7 @@ Simply clone this repository and execute the `init_dotfiles.sh` script like so:
 
 ```
 $ git clone https://github.com/NewProggie/Dev-Utils.git
-$ cd Dev-Utils && bash init_dotfiles.sh
+$ cd Dev-Utils && ./bootstrap
 ```
 
 ## Customizations
