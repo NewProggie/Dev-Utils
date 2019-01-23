@@ -16,14 +16,6 @@ jobs:
       - run:
           name: Bootstrap dev utilities
           command: bash -e install/bootstrap-posix-dev-utils.sh
-  build_on_macos:
-    macos:
-      xcode: "10.1.0"
-    steps:
-      - checkout
-      - run:
-          name: Bootstrap dev utilities
-          command: bash -e install/bootstrap-posix-dev-utils.sh
 workflows:
   version: 2
   workflow:

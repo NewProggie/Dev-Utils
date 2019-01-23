@@ -61,7 +61,7 @@ Write-Host "====> Installing vim-cmake-syntax plugin"
 git clone git://github.com/nickhutchinson/vim-cmake-syntax.git ${VIM_BUNDLE}\vim-cmake-syntax
 Write-Host "====> Installing gnuplot syntax highlighting"
 Invoke-WebRequest https://raw.githubusercontent.com/vim-scripts/gnuplot-syntax-highlighting/master/syntax/gnuplot.vim `
-  -OutFile ${VIM_SYNTAX}\gnuplot.vim 
+  -OutFile ${VIM_SYNTAX}\gnuplot.vim
 
 Write-Host "==> Installing VIM color themes from ${DOT_REPO}"
 Invoke-WebRequest -Uri "${DOT_REPO}/colors/newproggie.vim" -OutFile "${VIM_COLORS}\newproggie.vim"

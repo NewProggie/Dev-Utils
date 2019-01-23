@@ -1,0 +1,13 @@
+language: bash
+
+os:
+  - osx
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+
+script:
+  - cd ${TRAVIS_BUILD_DIR}
+  - bash -e install/bootstrap-posix-dev-utils.sh
