@@ -40,6 +40,7 @@ git clone https://github.com/majutsushi/tagbar.git ${VIM_BUNDLE}\tagbar
 Write-Host "====> Installing vim-airline plugin"
 git clone https://github.com/vim-airline/vim-airline.git ${VIM_BUNDLE}\vim-airline
 Write-Host "====> Installing vim-airline-themes plugin"
+Remove-Item ${VIM_BUNDLE}\vim-airline-themes -Recurse -ErrorAction Ignore
 git clone https://github.com/vim-airline/vim-airline-themes ${VIM_BUNDLE}\vim-airline-themes
 Write-Host "====> Installing vim-cpp-enhanced-highlight"
 git clone https://github.com/octol/vim-cpp-enhanced-highlight ${VIM_BUNDLE}\vim-cpp-enhanced-highlight

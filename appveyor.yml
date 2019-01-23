@@ -4,4 +4,4 @@ build:
 
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - powershell -NoProfile -ErrorAction Stop -ExecutionPolicy Bypass "& ""install\bootstrap-win-dev-utils.ps1"""
+  - powershell -NoProfile -ExecutionPolicy Bypass "& ""install\bootstrap-win-dev-utils.ps1"""
