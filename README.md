@@ -1,8 +1,12 @@
 # Dev-Utils
 Common development utils such as format styles, coding guidelines etc.
 
-[![CircleCI](https://circleci.com/gh/NewProggie/Dev-Utils.svg?style=svg)](https://circleci.com/gh/NewProggie/Dev-Utils)
-[![Build status](https://ci.appveyor.com/api/projects/status/mtywvysqne7ggqin?svg=true)](https://ci.appveyor.com/project/NewProggie/dev-utils)
+| Windows | macOS | Linux |
+|---------|-------|-------|
+| [![Build status](https://ci.appveyor.com/api/projects/status/mtywvysqne7ggqin?svg=true)](https://ci.appveyor.com/project/NewProggie/dev-utils)      | [![Build Status](https://travis-ci.org/NewProggie/Dev-Utils.svg?branch=master)](https://travis-ci.org/NewProggie/Dev-Utils)    | [![CircleCI](https://circleci.com/gh/NewProggie/Dev-Utils.svg?style=shield)](https://circleci.com/gh/NewProggie/Dev-Utils)    |
+
+
+
 
 
 ## Setup
