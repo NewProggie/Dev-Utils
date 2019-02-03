@@ -202,8 +202,8 @@ endfunction
 command -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 
 """ ClangFormat
-map <C-K> :pyf $CLANG_FORMAT_PATH/clang-format.py<cr>
-imap <C-K> <c-o>:pyf $CLANG_FORMAT_PATH/clang-format.py<cr>
+map <C-K> :py3f $CLANG_FORMAT_PATH/clang-format.py<cr>
+imap <C-K> <c-o>:py3f $CLANG_FORMAT_PATH/clang-format.py<cr>
 let g:clang_format_fallback_style = "Google"
 
 """ ClangTidy
@@ -213,10 +213,10 @@ command! -range=% ClangTidy :cexpr system('clang-tidy '
     \ . ' \| grep ' . expand('%:t:r')) | cwindow
 
 """ ClangRename
-noremap <leader>cr :pyf $CLANG_RENAME_PATH/clang-rename.py<cr>
+noremap <leader>cr :py3f $CLANG_RENAME_PATH/clang-rename.py<cr>
 
 """ ClangIncludeFixer
-noremap <leader>cf :pyf $CLANG_INCLUDE_FIXER_PATH/clang-include-fixer.py<cr>
+noremap <leader>cf :py3f $CLANG_INCLUDE_FIXER_PATH/clang-include-fixer.py<cr>
 let g:clang_include_fixer_jump_to_include = 1
 let g:clang_include_fixer_query_mode = 1
 
