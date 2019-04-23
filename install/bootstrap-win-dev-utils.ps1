@@ -3,6 +3,13 @@ $DOT_FILES = @(".alias", ".bash_profile", ".bashrc", ".exports", ".functions")
 $DOT_FILES += @(".gdbinit", ".gitconfig", ".inputrc", ".prompt", ".tmux.conf")
 $DOT_FILES += @(".git_commit_template.txt", ".vimrc")
 
+
+if ($PSVersionTable.PSVersion.Major -lt 3) {
+  Write-Host "Error: Powershell Version 3.0 or higher required."
+  Exit
+}
+
+
 Write-Host "==> Copying dotfiles from ${DOT_REPO}"
 $dotfile_path = Split-Path -Path $PSScriptRoot -Parent
 foreach($element in $DOT_FILES) {
