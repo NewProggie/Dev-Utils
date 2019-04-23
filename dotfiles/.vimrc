@@ -114,7 +114,8 @@ set nohlsearch               " turn of highlighting for searched expressions
 set incsearch                " incremental search rules
 set ignorecase               " case insensitive matching
 set smartcase                " unless there's a capital letter
-set textwidth=80             " we want 80 columns
+set textwidth=0              " don't ever fucking dare to mess with my cursor
+set wrapmargin=0             " again, breaking longer lines while typing them
 set showmatch                " show matching bracket
 nnoremap t <c-]>             " ctags shortcut (t =tag and jumping back with Ctrl-t
 
