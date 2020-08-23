@@ -44,6 +44,30 @@ function scannerize_pdf() {
     fi
 }
 
+# make given pdf file look as it has been scanned
+function scannerize_pdf2() {
+    if [[ -z "$1" ]]; then
+        echo "No input argument supplied"
+        return -1
+    elif [[ -z "$2" ]]; then
+        echo "No output argument supplied"
+        return -1
+    fi
+
+    if [[ -x "$(command -v convert)" && -x "$(command -v gs)" ]]; then
+        convert -density 150 "$1" -colorspace gray -linear-stretch 3.5%x10% \
+          -blur 0x0.5 -attenuate 0.25 +noise Gaussian -rotate 0.5 _temp.pdf
+        gs -dSAFER -dBATCH -dNOPAUSE -dNOCACHE -sDEVICE=pdfwrite \
+          -sColorConversionStrategy=LeaveColorUnchanged \
+          -dAutoFilterColorImages=true -dAutoFilterGrayImages=true \
+          -dDownsampleMonoImages=true -dDownsampleGrayImages=true \
+          -dDownsampleColorImages=true -sOutputFile="$2" _temp.pdf
+        rm -f _temp.pdf
+    else
+        echo "No proper commandline tool found"
+    fi
+}
+
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
 # the `.git` directory, listing directories first. The output gets piped into
 # `less` with options to preserve color and line numbers, unless the output is
