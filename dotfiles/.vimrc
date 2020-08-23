@@ -65,7 +65,7 @@ set so=7                     " set 7 lines to the cursor when moving vertically
 set noro                     " open vimdiff in write mode (instead of readonly)
 set wildignore=*.o,*~,.git\* " ignore compiled files
 set foldcolumn=1             " add a little margin to the left
-match OverLength /\%80v.\+/  " highlight text longer than 80 columns
+match OverLength /\%100v.\+/ " highlight text longer than 100 columns
 set hidden                   " allow buffers to be hidden
 augroup project              " create language-specific settings
     autocmd!
@@ -250,6 +250,9 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 """ pathogen::gitgutter
 nmap <leader>hn <Plug>GitGutterNextHunk
 nmap <leader>hp <Plug>GitGutterPrevHunk
+let g:gitgutter_realtime = 1
+let g:gitgutter_eager = 1
+set updatetime=100
 
 """ pathogen::airline
 let g:airline_powerline_fonts = 1

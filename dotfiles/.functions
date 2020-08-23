@@ -24,6 +24,26 @@ function shrink_pdf() {
     fi
 }
 
+# make pdf file look scanned
+function scannerize_pdf() {
+    if [[ -z "$1" ]]; then
+        echo "No input argument supplied"
+        return -1
+    elif [[ -z "$2" ]]; then
+        echo "No output argument supplied"
+        return -1
+    fi
+
+    if [[ -x "$(command -v convert)" ]]; then
+        convert -density 130 "$1" -rotate "$([ $((RANDOM % 2)) -eq 1 ] && \
+        echo -)0.$(($RANDOM % 4 + 5))" -attenuate 0.15 +noise Multiplicative \
+        -attenuate 0.07 +noise Multiplicative -sharpen 0x1.0 \
+        -colorspace Gray "$2"
+    else
+        echo "No imagemagick convert tool found"
+    fi
+}
+
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
 # the `.git` directory, listing directories first. The output gets piped into
 # `less` with options to preserve color and line numbers, unless the output is
