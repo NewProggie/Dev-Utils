@@ -1,6 +1,6 @@
 [user]
   name = Kai Wolf
-  email = kai.wolf@gmail.com
+  email = mail@kai-wolf.me
 [commit]
   template = ~/.git_commit_template.txt
 [push]
@@ -8,7 +8,7 @@
 [alias]
   # Show all configured aliases
   aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
-  ll = log --graph --abbrev=15 --pretty=format:'%C(auto,yellow) changeset:   %C(auto,bold)%h  %Creset%C(auto,yellow)%d%Creset%n user:        %an <%ae>%n date:        %<(59,trunc)%ad%n summary:     %<(59,trunc)%s%n'
+  ll = log --graph --abbrev=15 --pretty=format:'%C(auto,yellow) changeset:   %C(auto,bold)%h  %Creset%C(auto,yellow)%d%Creset%n user:        %an <%ae>%n date:        %<(59,trunc)%ad%n summary:     %<(72,trunc)%s%n'
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
   lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   co = checkout
@@ -20,8 +20,10 @@
   url = config --get remote.origin.url
   new = !sh -c 'git log --oneline $1@{1}..$1@{0} "$@"'
   undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
-  # Delete all local merged branches
+  # [d]elete [l]ocal merged [b]ranches
   dlb = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d
+  # [r]emove [l]ast [c]ommit
+  rlc = reset @~
 [core]
   editor = vim
   fileMode = true
@@ -38,11 +40,6 @@
   conflictstyle = diff3
 [mergetool]
   prompt = false
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  required = true
-  process = git-lfs filter-process
 [difftool]
   prompt = false
 [credential]
@@ -65,3 +62,8 @@
   stripLeadingSymbols = false
 [gpg]
   program = gpg2
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
