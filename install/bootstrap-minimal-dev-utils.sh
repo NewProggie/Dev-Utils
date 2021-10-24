@@ -13,10 +13,10 @@ for cmd in ${commands[*]}; do
   fi
 done
 
-echo "==> Symlinking dotfiles from ${DOT_REPO}"
+echo "==> Installing dotfiles from ${DOT_REPO}"
 dotfiles=(dotfiles/.tmux.conf dotfiles/.bashrc dotfiles/.gdbinit dotfiles/.exports \
   dotfiles/.prompt dotfiles/.git_commit_template.txt dotfiles/.vimrc dotfiles/.emacs \
-  dotfiles/.ycm_extra_conf.py dotfiles/.functions dotfiles/.alias dotfiles/.bash_profile \
+  dotfiles/.ycm_extra_conf.py dotfiles/.functions dotfiles/.alias dotfiles/.sh_profile \
   dotfiles/.inputrc dotfiles/.gitconfig)
 for file in ${dotfiles[*]}; do
   home_dotfile="${HOME}/$(basename "${file}")"
@@ -24,16 +24,13 @@ for file in ${dotfiles[*]}; do
     echo "====> Backup ${home_dotfile} to ${home_dotfile}.old"
     mv "${home_dotfile}" "${home_dotfile}.old"
   fi
-  echo "====> Symlinking ${home_dotfile}"
+  echo "====> Copying ${home_dotfile}"
   curl -LSso "${home_dotfile}" \
     https://raw.githubusercontent.com/NewProggie/Dev-Utils/master/${file}
 done
+mv "${HOME}"/.sh_profile "${HOME}/.bash_profile"
 source "${HOME}/.bash_profile"
 unset file
-
-echo "==> Installing git bash completion"
-curl -LSso "${HOME}/.git-completion.bash" \
-  https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 
 echo "==> Installing vim thirdparty plugins"
 VIM_AUTOLOAD="${HOME}"/.vim/autoload
