@@ -42,7 +42,7 @@ VIM_SYNTAX="${HOME}"/.vim/syntax
 VIM_PLUGIN="${HOME}"/.vim/plugin
 VIM_AIRLINE_THEMES=${VIM_BUNDLE}/vim-airline-themes/autoload/airline/themes
 mkdir -p "${VIM_AUTOLOAD}" "${VIM_BUNDLE}" "${VIM_COLORS}" "${VIM_SYNTAX}" \
-  "${VIM_PLUGIN}" "${VIM_AIRLINE_THEMES}"
+  "${VIM_PLUGIN}"
 curl -LSso "${VIM_AUTOLOAD}"/pathogen.vim https://tpo.pe/pathogen.vim
 echo "====> Symlinking global .ycm_extra_conf"
 ln -s "$(pwd)"/dotfiles/.ycm_extra_conf.py "${HOME}"/.vim/
