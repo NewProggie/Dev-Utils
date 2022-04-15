@@ -65,7 +65,6 @@ set so=7                     " set 7 lines to the cursor when moving vertically
 set noro                     " open vimdiff in write mode (instead of readonly)
 set wildignore=*.o,*~,.git\* " ignore compiled files
 set foldcolumn=1             " add a little margin to the left
-match OverLength /\%100v.\+/ " highlight text longer than 100 columns
 set hidden                   " allow buffers to be hidden
 augroup project              " create language-specific settings
     autocmd!
