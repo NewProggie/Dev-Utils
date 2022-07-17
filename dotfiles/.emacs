@@ -56,8 +56,8 @@
 
 ;; == FONTS AND THEME ==
 ;; set default font depending on what OS is in use
-(if (eq system-type 'darwin) (set-default-font OSX_FONT))
-(if (eq system-type 'windows-nt) (set-default-font WIN_FONT))
+(if (eq system-type 'darwin) (set-frame-font OSX_FONT))
+(if (eq system-type 'windows-nt) (set-frame-font WIN_FONT))
 ;; set foreground and background color
 (add-to-list 'default-frame-alist '(background-color . "#282828"))
 (add-to-list 'default-frame-alist '(foreground-color . "#F0F0F0"))

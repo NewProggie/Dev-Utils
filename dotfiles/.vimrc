@@ -247,8 +247,8 @@ let g:ctrlp_max_height = 20
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 """ pathogen::gitgutter
-nmap <leader>hn <Plug>GitGutterNextHunk
-nmap <leader>hp <Plug>GitGutterPrevHunk
+nmap <leader>hn <Plug>(GitGutterNextHunk)
+nmap <leader>hp <Plug>(GitGutterPrevHunk)
 let g:gitgutter_realtime = 1
 let g:gitgutter_eager = 1
 set updatetime=100
