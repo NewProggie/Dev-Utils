@@ -63,14 +63,14 @@ git clone https://github.com/vim-airline/vim-airline-themes "${VIM_BUNDLE}"/vim-
 echo "====> Installing vim-cpp-enhanced-highlight"
 git clone https://github.com/octol/vim-cpp-enhanced-highlight "${VIM_BUNDLE}"/vim-cpp-enhanced-highlight
 echo "====> Installing vim-fugitive plugin"
-git clone git://github.com/tpope/vim-fugitive.git "${VIM_BUNDLE}"/vim-fugitive
+git clone https://github.com/tpope/vim-fugitive.git "${VIM_BUNDLE}"/vim-fugitive
 echo "====> Installing vim-fugitive stash extension"
 wget -O "${VIM_PLUGIN}"/fugitive-stash.vim \
   https://raw.githubusercontent.com/MobiusHorizons/fugitive-stash.vim/master/plugin/fugitive-stash.vim
 echo "====> Installing vim-dispatch plugin"
-git clone git://github.com/tpope/vim-dispatch.git "${VIM_BUNDLE}"/vim-dispatch
+git clone https://github.com/tpope/vim-dispatch.git "${VIM_BUNDLE}"/vim-dispatch
 echo "====> Installing vim-gitgutter plugin"
-git clone git://github.com/airblade/vim-gitgutter.git "${VIM_BUNDLE}"/vim-gitgutter
+git clone https://github.com/airblade/vim-gitgutter.git "${VIM_BUNDLE}"/vim-gitgutter
 echo "====> Installing DoxygenToolkit plugin"
 git clone https://github.com/vim-scripts/DoxygenToolkit.vim.git "${VIM_BUNDLE}"/DoxygenToolkit
 echo "====> Installing YouCompleteMe plugin (fork featuring C/C++ hints)"
@@ -79,7 +79,7 @@ git clone --recursive git@github.com:ycm-core/YouCompleteMe.git "${VIM_BUNDLE}"/
 echo "====> Installing vim-headerguard plugin"
 git clone https://github.com/drmikehenry/vim-headerguard.git "${VIM_BUNDLE}"/vim-headerguard
 echo "====> Installing vim-cmake-syntax plugin"
-git clone git://github.com/nickhutchinson/vim-cmake-syntax.git "${VIM_BUNDLE}"/vim-cmake-syntax
+git clone https://github.com/nickhutchinson/vim-cmake-syntax.git "${VIM_BUNDLE}"/vim-cmake-syntax
 echo "====> Installing vim-markdown-preview plugin"
 git clone https://github.com/JamshedVesuna/vim-markdown-preview.git "${VIM_BUNDLE}"/vim-markdown-preview
 echo "====> Installing gnuplot syntax highlighting"
